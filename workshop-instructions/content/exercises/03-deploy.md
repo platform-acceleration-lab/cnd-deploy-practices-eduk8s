@@ -13,9 +13,19 @@ After completing the lab, you will be able to:
 
 # Getting started
 
-Take a few minutes to review the resources you will create in this lab
-for the
-[`pal-tracker` Kubernetes deployment]({{ ingress_protocol }}://{{ session_namespace }}.{{ ingress_domain }}/slides#/deploy-intro)
+Review the following slides:
+
+```dashboard:create-dashboard
+name: Deploy
+url: https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gb50aa5c946_0_10
+```
+
+or the accompanying introduction video:
+
+```dashboard:create-dashboard
+name: Deploy
+url: https://drive.google.com/file/d/1js7Pph8sx2G7w937PDhH_Js1ZZ93Ubp3/preview
+```
 
 ## Prep your terminals
 

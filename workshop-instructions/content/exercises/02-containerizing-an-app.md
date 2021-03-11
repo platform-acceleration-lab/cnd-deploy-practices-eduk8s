@@ -1,22 +1,39 @@
 # Containerizing an App
 
 This lab will walk you through how to containerize an application.
-You will be using Gradle task provided by Spring Boot Plugin to
+You will use a Gradle task provided by Spring Boot Plugin to
 generate container image.
-Behind the scene, the Gradle task uses [Buildpacks](https://buildpacks.io/).
-Once you have built your container image, you will test it using Docker.
+Behind the scenes,
+the Gradle task uses [Buildpacks](https://buildpacks.io/) to generate
+the image.
+
+Once you have built your container image, you will test it using the
+locally installed Docker container runtime.
 
 # Learning Outcomes
 
 After completing the lab, you will be able to:
 
--   Describe how to generate a runnable
-    container image for your application
+-   Describe how to generate a runnable container image for your
+    application
 
--   Explain how to publish an image to a
-    Container registry
+-   Explain how to publish an image to a container registry
 
 # Getting started
+
+Review the following slides:
+
+```dashboard:create-dashboard
+name: Containerize
+url: https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gc70c0249b7_0_168
+```
+
+or the accompanying introduction video:
+
+```dashboard:create-dashboard
+name: Containerize
+url: https://drive.google.com/file/d/1js7Pph8sx2G7w937PDhH_Js1ZZ93Ubp3/preview
+```
 
 Make sure you are in your `~/exercises/pal-tracker` directory now in
 both of your terminal windows,
@@ -80,8 +97,10 @@ To generate container images, you will be using a Gradle task.
 
 # Container registry
 
-Next you will want to publish your images to a container registry where
-other people and systems can pull them down to run locally.
+Next you will publish your image to a container registry where
+your container orchestrated platform can pull to run in a CaaS or PaaS
+environment.
+
 For this lab, you will use a container registry provided to you,
 but you could (in theory) use any container registry.
 
@@ -119,37 +138,34 @@ You are now ready to publish your image to your container registry.
     session: 1
     ```
 
-# Submit this assignment
+# Check your exercise
 
-Submit the assignment using the
+Run a smoke test using the
 `cloudNativeDeveloperK8sContainerizingAnApp` gradle task from within the
-existing `assignment-submission` project directory.
+existing `smoke-tests` project directory.
 It requires you to provide the name of your container registry.
 
-1.  Navigate to the `~/exercises/assignment-submission` directory in
+1.  Navigate to the `~/exercises/smoke-tests` directory in
     terminal 2:
 
     ```terminal:execute
-    command: cd ~/exercises/assignment-submission
+    command: cd ~/exercises/smoke-tests
     session: 2
     ```
 
-1.  Run the assignment submission command in terminal 2:
+1.  Run the smoke-tests command in terminal 2:
 
     ```terminal:execute
     command: ./gradlew cloudNativeDeveloperK8sContainerizingAnApp -Prepository={{ registry_host }}/pal-tracker
     session: 2
     ```
 
-# Learning Outcomes
+# Benefits of containerizing an application with buildpacks
 
-Now that you have completed the lab, you should be able to:
 
--   Describe how to generate a runnable
-    container image for your application
 
--   Explain how to publish an image to a
-    Container registry
+# Tradeoffs
+
 
 # Resources
 

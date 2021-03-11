@@ -25,6 +25,12 @@ kubectl wait --namespace ingress-nginx \
 
 echo "Installing educates"
 kubectl apply -k "github.com/eduk8s/eduk8s?ref=develop"
+sleep 10
+# TODO Wait for educates operator to deploy
+# kubectl wait --namespace eduk8s \
+#   --for=condition=ready pod \
+#   --selector=app.kubernetes.io/component=controller \
+#   --timeout=90s
 
 HOST_OS=$(uname)
 if [[ "$HOST_OS" == "Linux" ]]; then
@@ -40,6 +46,6 @@ fi
 kubectl set env deployment/eduk8s-operator -n eduk8s INGRESS_DOMAIN="${IPADDRESS}.nip.io"
 
 echo "Installing the workshop and training portal"
-kubectl apply -f $DIR/educates
-sleep 5
+kubectl apply -f $DIR/educates/
+sleep 10
 kubectl get trainingportals.training.eduk8s.io
