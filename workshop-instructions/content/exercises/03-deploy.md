@@ -13,19 +13,8 @@ After completing the lab, you will be able to:
 
 # Getting started
 
-Review the following slides:
-
-```dashboard:create-dashboard
-name: Deploy
-url: https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gb50aa5c946_0_10
-```
-
-or the accompanying introduction video:
-
-```dashboard:create-dashboard
-name: Deploy
-url: https://drive.google.com/file/d/1js7Pph8sx2G7w937PDhH_Js1ZZ93Ubp3/preview
-```
+Review the [Deploy](https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gb50aa5c946_0_10)
+slides or the accompanying *Deploy* lecture.
 
 ## Prep your terminals
 

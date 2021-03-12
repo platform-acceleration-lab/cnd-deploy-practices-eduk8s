@@ -21,19 +21,32 @@ After completing the lab, you will be able to:
 
 # Getting started
 
-Review the following slides:
+Review the
+[Containerize](https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gc70c0249b7_0_168)
+slides or the accompanying *Containerize* lecture.
 
-```dashboard:create-dashboard
-name: Containerize
-url: https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gc70c0249b7_0_168
-```
+In the previous lesson you ran your application locally using the gradle
+`bootRun` task.
+Running the task only compiled and ran your application in memory on
+your development environment.
 
-or the accompanying introduction video:
+You could also have built a Java deployable `jar` artifact using the
+gradle `build` task,
+and then run it with the java command:
 
-```dashboard:create-dashboard
-name: Containerize
-url: https://drive.google.com/file/d/1js7Pph8sx2G7w937PDhH_Js1ZZ93Ubp3/preview
-```
+`java -jar build/lib/pal-tracker.jar`
+
+The jar file is deployable and runnable *as long as you have the Java*
+*runtime installed on the target machine where you run it*.
+
+But the jar file is not sufficient by itself to run inside a container.
+Cloud native applications follow the
+[`dependencies`](https://12factor.net/dependencies) guideline,
+where all dependencies must be explicitly *declared* and *isolated*.
+
+You will build a container image that explicitly isolates all the
+runtime dependencies that can be run on a container orchestrated
+platform.
 
 Make sure you are in your `~/exercises/pal-tracker` directory now in
 both of your terminal windows,
@@ -68,6 +81,14 @@ To generate container images, you will be using a Gradle task.
     session: 1
     ```
 
+# Run your app using the container image locally
+
+You will use the Docker runtime on your local environment to run your
+app.
+
+This is a good way to simulate in your local development machine what
+your container orchestrator will do in the next lesson.
+
 1.  Run your image using `docker` and expose port 8080 where your
     application is listening.
 
@@ -98,10 +119,10 @@ To generate container images, you will be using a Gradle task.
 # Container registry
 
 Next you will publish your image to a container registry where
-your container orchestrated platform can pull to run in a CaaS or PaaS
-environment.
+your container orchestrated platform can pull to run it.
 
-For this lab, you will use a container registry provided to you,
+For this lab, you will use a container registry provided to you at
+`https://{{ registry_host }}`,
 but you could (in theory) use any container registry.
 
 Examples of other container registries are
@@ -116,8 +137,8 @@ source projects.
 
 You do not need to explicitly login to the container registry provided
 to you.
-Your docker client is already set to a private container registry
-provided in your lab environment.
+Your docker client is already set up up with authentication to the
+private container registry provided in your lab environment.
 
 # Publish your image
 
@@ -130,6 +151,8 @@ You are now ready to publish your image to your container registry.
     command: docker tag pal-tracker {{ registry_host }}/pal-tracker:v0
     session: 1
     ```
+
+    Notice the tag is prefixed with your registry host.
 
 1.  Push your image to your container registry:
 
@@ -160,12 +183,31 @@ It requires you to provide the name of your container registry.
     session: 2
     ```
 
-# Benefits of containerizing an application with buildpacks
+# Wrap
 
+Notice the manual steps required from the last lesson and this one to
+generate a deployable artifact.
 
+There are some issues to consider with this approach:
 
-# Tradeoffs
+-   Similar complexity to prepare for deployment as a legacy,
+    middleware hosted application.
 
+-   How to ensure your dependencies in your application are free from
+    malware or vulnerabilities?
+
+-   What happens behind-the-scenes with the gradle `bootBuildImage`
+    command?
+
+-   Where does this fit into an automated build and deployment pipeline?
+
+Fortunately, VMware Tanzu suite of products helps solve some of these
+problems.
+
+You can read about some of them here:
+
+- [Cloud Native Buildpacks](https://tanzu.vmware.com/developer/guides/containers/cnb-gs-kpack/)
+- [Tanzu Build Service](https://tanzu.vmware.com/build-service?utm_source=google&utm_medium=cpc&utm_campaign=amer_gp-b_a2&utm_content=g2_t014&utm_term=tanzu%20build%20service&_bt=498180106794&_bk=tanzu%20build%20service&_bm=e&_bn=g&_bg=119184091833&gclid=Cj0KCQiAv6yCBhCLARIsABqJTjbnEPQ6tDuo23MFK9yWNHzGSzCc8CEUoAlDgsRH7xM3t6T1L5Y3m70aAnDjEALw_wcB)
 
 # Resources
 

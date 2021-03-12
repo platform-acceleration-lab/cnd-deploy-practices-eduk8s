@@ -22,19 +22,8 @@ you will be able to:
 
 ## Introduction
 
-Review the following slides:
-
-```dashboard:create-dashboard
-name: Blocking Web Applications
-url: https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.g7ea4a9dfdf_0_1813
-```
-
-or the accompanying introduction video:
-
-```dashboard:create-dashboard
-name: Blocking Web Applications
-url: https://drive.google.com/file/d/1js7Pph8sx2G7w937PDhH_Js1ZZ93Ubp3/preview
-```
+Review the [Introduction](https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.g7ea4a9dfdf_0_1813)
+slides or the accompanying *Introduction* lecture.
 
 It is important to understand the reasons driving adoption of cloud
 native principles and practices,

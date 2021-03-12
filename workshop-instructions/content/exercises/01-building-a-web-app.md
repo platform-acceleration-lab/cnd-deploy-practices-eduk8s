@@ -7,27 +7,17 @@ on your "local" development environment.
 
 # Learning outcomes
 
--   Describe how to build and run a basic web application in a
-    development environment.
+-   Describe how to run a basic web application in a development
+    environment.
 -   Describe how dependencies are declared and sourced when building
-    your web application.
+    your Spring web application.
 -   Explain benefits and trade-offs of blocking web applications.
 
 # Getting started
 
-Review the following slides:
-
-```dashboard:create-dashboard
-name: Blocking Web Applications
-url: https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gc70c0249b7_0_0
-```
-
-or the accompanying introduction video:
-
-```dashboard:create-dashboard
-name: Blocking Web Applications
-url: https://drive.google.com/file/d/1js7Pph8sx2G7w937PDhH_Js1ZZ93Ubp3/preview
-```
+Review the
+[Blocking web apps](https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gc70c0249b7_0_0)
+slides or the accompanying *Introduction* lecture.
 
 # Project structure
 
@@ -252,7 +242,7 @@ web application compliant with the two following cloud native guidelines:
     session: 1
     ```
 
-    Once you find the task, use it to run your application.
+1.  Once you find the task, use it to run your application.
 
     You will see log output from Spring Boot and a line that says it is
     listening on port 8080.
@@ -263,6 +253,12 @@ web application compliant with the two following cloud native guidelines:
     command: curl -v localhost:8080
     session: 2
     ```
+
+Notice that the gradle `bootRun` task will implicitly compile the Java
+source code, load it into memory, and run it.
+
+It does not build an artifact you can deploy.
+You will see that in the next lesson.
 
 # Check your exercise
 
@@ -293,67 +289,6 @@ It requires you to provide the URL of your application running locally.
     command: <ctrl+c>
     session: 1
     ```
-
-# Benefits of blocking web applications
-
--   *Simplicity*:
-
-    Notice the simplicity of the application.
-    You have a running application that was built and run from two java
-    source code files, driven by a gradle build.
-
-    The client was a similated user via an http client.
-    The client submits a request, and waits for a response,
-    and renders the result.
-
-    In more complex applications,
-    the web application may read or write data from/to a database,
-    may interact with 3rd party applications,
-    or a combination of activities.
-
-    A large percentage on internet applications function this way.
-
--   *Standards-based protocols*:
-    Web applications use open standards and protocols that allow you to
-    integrate with other applications without tying the underlying
-    implementation details.
-    This is a key aspect aligned with the
-    [port binding](https://12factor.net/port-binding).
-
-# Tradeoffs
-
--   *Blocking, coupling and latency*:
-
-    When a client issues a request to a blocking web application,
-    it will be blocked from doing work while it waits for a response
-    from the web server.
-
-    In many cases this may be OK if the time it takes for the web server
-    to handle the work and respond to the client is low.
-
-    In many cases it may not be OK.
-
-    The decision to block for a response implies the client requires
-    the response to continue to a next step in its work, and is
-    *coupled* to the web server it calls.
-
--   *Implementations may have different failure characteristics*:
-    A tradeoff of using open protocols is that each implementation
-    services request in different ways.
-    Some examples:
-
-    -   Java blocking web apps threads and thread-pools
-    -   NodeJS uses Single Thread Event Loop model
-    -   Some web servers (such as Apache HTTP server) may use a
-        combination of processes and threads.
-
-    The clients should consider that failures will occur,
-    and consider how to handle or recover.
-    This is subject for another workshop.
-
-There are alternate types of *Architecture Styles* that solve these
-problems,
-but outside of the scope to cover in this workshop.
 
 # Resources
 
