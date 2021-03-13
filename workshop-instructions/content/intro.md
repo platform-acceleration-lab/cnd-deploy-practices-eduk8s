@@ -35,7 +35,7 @@ you will be able to:
 
 ## Introduction
 
-Review the [Introduction](https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.g7ea4a9dfdf_0_1813)
+Review the [Introduction](https://docs.google.com/presentation/d/1Bg9Ra_vMIzq4Gq5hfaZ0jopmKj1obvwov-Rk4xZbyBY/present#slide=id.g7ea4a9dfdf_0_1813)
 slides or the accompanying *Introduction* lecture.
 
 It is important to understand the reasons driving adoption of cloud

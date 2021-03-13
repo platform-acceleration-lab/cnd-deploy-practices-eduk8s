@@ -15,7 +15,7 @@ After completing the lab, you will be able to:
 
 # Getting started
 
--   Review the [Access and Deploy](https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gb50aa5c946_0_10)
+-   Review the [Access and Deploy](https://docs.google.com/presentation/d/1ctnmoRcgbcVyBndFBDr00HtE23ky8GSqFIgKkRmo2Tw/present#slide=id.g7ea4a9dfdf_0_1813)
     slides or the accompanying *Access and Deploy* lecture.
 
 -   You are provided access to a Kubernetes cluster as your container
