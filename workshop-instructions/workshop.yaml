@@ -4,6 +4,6 @@ name: Kubernetes Developer
 modules:
   activate:
   - intro
-  - exercises/01-authoring-a-spring-boot-app
+  - exercises/01-building-a-web-app
   - exercises/02-containerizing-an-app
   - exercises/03-deploy

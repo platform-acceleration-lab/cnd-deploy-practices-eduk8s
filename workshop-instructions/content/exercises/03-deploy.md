@@ -1,199 +1,168 @@
-# Deploying a Containerized App to Kubernetes
+# Deploying a Containerized App
 
-This lab will walk you through how to deploy a containerized app to
+This lab will walk you through how to deploy a containerized web app to
 Kubernetes.
 
 # Learning Outcomes
 
 After completing the lab, you will be able to:
 
-- Describe the steps to deploy a containerized web app to Kubernetes
-- Use `kubectl` to create Kubernetes objects defined in yaml files
-- Demonstrate the ability to use the Kubernetes documentation to create object definitions
+-   Describe the resources required to deploy a containerized web app
+    to a container orchestrated platform.
+
+-   Demonstrate the deployment of a web app to a container orchestrated
+    platform.
 
 # Getting started
 
-Review the [Deploy](https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gb50aa5c946_0_10)
-slides or the accompanying *Deploy* lecture.
+-   Review the [Access and Deploy](https://docs.google.com/presentation/d/184YWy6tmtSQ8-bXLw3wdZYcHQEkgW3-cZ3Y7Dqq3rMo/present?slide=id.gb50aa5c946_0_10)
+    slides or the accompanying *Access and Deploy* lecture.
 
-## Prep your terminals
+-   You are provided access to a Kubernetes cluster as your container
+    orchestrated platform to which you will deploy your application.
 
-Make sure you are in your `~/exercises/k8s` directory now in
-both of your terminal windows,
-and clear both:
+# Review the runtime deployment configuration
 
-```terminal:execute-all
-command: cd ~/exercises/k8s
-```
+1.  Make sure you are in your `~/exercises/k8s` directory now in
+    both of your terminal windows,
+    and clear both:
 
-```terminal:clear-all
-```
-
-## Review the configuration repository
-
-The `~/exercises/k8s` configuration repository will contain a
-single `.gitignore` file as
-well as the (hidden) git files.
-
-You will be building up the k8s configuration in this directory, and
-you are provided reference implementations at each stage identified
-by tags in the Git repository.
-Take some time to navigate through the tags and branches using the
-following command:
-
-```terminal:execute
-command: git lola
-session: 1
-```
-
-# Connect to your Kubernetes cluster
-
-You are provided with a Kubernetes cluster in this course.
-
-You already have a
-[Kubernetes namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
-provisioned for you,
-and access to it is already configured via your environment's
-[kube config file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
-located at `$HOME/.kube/config`.
-
-## The Kubernetes command line client
-
-The `kubectl` CLI will be your primary method of interacting with
-Kubernetes.
-Throughout this class, you will gain a deep understanding of how to
-use `kubectl` to create, read, update, delete and debug various
-Kubernetes objects.
-
-### Verify access and namespace
-
-To verify that `kubectl` is correctly configured, run the following
-
-```terminal:execute
-command: kubectl get all
-session: 1
-```
-
-This will return all of the Pods, Services, Deployments, and
-ReplicaSets in your currently targeted Namespace.
-Right now you will probably see an output similar to:
-
-```no-highlight
-No resources found in k8s-developer-practices-w01-s002 namespace.
-```
-
--   You have not created any Kubernetes objects yet,
-    describing the `No resources found` message.
-
--   Notice the `k8s-developer-practices-w01-s002` is the namespaces
-    of this example -
-    you will likely see a different value,
-    this is your namespace.
-
-## Namespaces
-
-In this class you are provided a namespace,
-and you are not permitted to create others.
-
-In many kubernetes deployments you may have access to create namespaces.
-
-The following are some considerations:
-
-1.  It is common practice to organize your applications, and the
-    associated Kubernetes objects, into namespaces other than the
-    `default` namespace.
-    This allows you to more easily see what Kubernets object are
-    related.
-    Namespaces also prevent overwriting Kubernetes objects that do not
-    belong to your application.
-    If you need to target a specific namespace you could do as follows
-    (*Do not try this out in your environment, you will get an access*
-    *error*):
-
-    ```bash
-    command: kubectl config set-context --current --namespace=development
+    ```terminal:execute-all
+    command: cd ~/exercises/k8s
     ```
 
-    If you are running an environment where the namespace has not
-    already been created for you and you have authorization to create
-    spaces,
-    you might do that as follows
-    (*Do not try this out in your environment, you will get an access*
-    *error*):
-
-    ```bash
-    command: kubectl create namespace development
+    ```terminal:clear-all
     ```
 
-## Kubernetes resources
-
-You will deploy and configure various types of Kubernetes resources in
-this workshop.
-
-Here are some tips:
-
-1.  If you ever forget what objects are available in your cluster, use
-    `kubectl api-resources` to see a list.
+1.  Review the list of files in the `~/exercises/k8s` directory.
 
     ```terminal:execute
-    command: kubectl api-resources
+    command: ls -al
     session: 1
     ```
 
-    This list also shows the short names of those resources.
-    For example, the short name for `configmaps` is `cm`.
-    You can get a list of configmaps in your current namespace by typing
-    either `kubectl get configmaps` or `kubectl get cm`.
+1.  Notice the three yaml files.
+    They comprise the *Runtime Configuration* of your application.
 
-1.  Ideally you should consider configuring an alias and bash or zsh
-    auto-completion for the `kubectl` command.
-    You will be running it frequently throughout the course.
-    See the
-    [Kubernetes cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-autocomplete)
-    for how to set it up in your own environments.
-    If you are running on an on-demand or instructor provided
-    environment,
-    the `kubectl` command is already aliased as `k`,
-    with bash auto-completion enabled.
+1.  Also notice these files are not stored with your application code.
+
+    The [configuration in the environment](https://12factor.net/config)
+    guideline *intent* is that you segregrate the code from the
+    environment specific information,
+    as they will vary along different dimensions (features vs runtime)
+    and at different rates (one codebase, many deployments).
+
+1.  Each of the yaml files comprise specific functions necessary to run
+    and access your web application using the
+    [Kubernetes](https://kubernetes.io) container orchestration platform.
+
+    You will become familiar with each Kubernetes *resource* necessary
+    to deploy your app in the remainder of this exercise.
+
+# Accessing your platform
+
+1.  It is necessary to access the platform via a self-service API.
+    You do not have direct access to the machine(s) where your code will
+    run.
+
+1.  You have the `kubectl` command installed and pre-configured to
+    authenticate and connect to a Kubernetes cluster.
+
+# Platform resources and isolation
+
+1.  Platform operators have set up rules to provision a fixed amount of
+    resources available to you to run the lesson,
+    as well as a dedicated/isolated space that other app operators on
+    the platform will not see.
+
+1.  The Kubernetes feature that provides this functionality is the
+    [namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
+
+1.  You cannot access other user namespaces.
+
+# Verify access and namespace
+
+1.  To verify that `kubectl` is correctly configured, run the following
+
+    ```terminal:execute
+    command: kubectl get all
+    session: 1
+    ```
+
+1.  This command returns a list of *resources* that support running your
+    application on the Kubernetes platform,
+    in your dedicated *namespace*.
+    You should see an output similar to the folowing:
+
+    ```no-highlight
+    No resources found in cnd-deploy-practices-w01-s002 namespace.
+    ```
+
+-   Since you have not yet deployed your application,
+    your will see the message prefix of
+    `No resources found`.
+
+-   Notice the `cnd-deploy-practices-w01-s002` is the *namespace*
+    of this example -
+    you will likely see a different value as your dedicated *namespace*
+    for this workshop.
 
 # Deploy your application
 
-You will use a Kubernetes Deployment object to deploy your application
-to the cluster.
-Kubernetes Deployments define which container image(s) are needed to run
-your application.
+Modern Platforms (including PaaS and CaaS) have a concept of
+*Application* or *Deployment* that is a high level abstraction over a
+set of features comprising a product.
+But the *Application* or *Deployment* may have many runtime components
+(such as containers) comprising the application.
 
-1.  Inside of the k8s config repo,
-    checkout the solution template:
+Kubernetes has first class support for *Deployment* resource to help you
+deploy your application workloads.
 
-    ```terminal:execute
-    command: git checkout deployment-solution deployment.yaml
-    session: 2
+1.  Review the `~/exercises/k8s/deployment.yaml` file:
+
+    ```editor:open-file
+    file: ~/exercises/k8s/deployment.yaml
     ```
 
-1.  Replace the container registry `REGISTRY_HOST` placeholder in the
-    `k8s/deployment.yaml` with your container registry:
+    There is a lot going on here,
+    but if you focus on the `name` attributes,
+    you can figure out what is going on:
 
-    ```copy
-    {{ registry_host }}
-    ```
+    -   `pal-tracker`:
+        name of the Kubernetes *Deployment* resource.
 
-    Note that the `deployment.yaml` defines the Deployment Kubernetes
-    object as well as the Pod object.
+    -   `pal-tracker-pod`:
+        Name of the Kubernetes *Pod* inside of the
+        *Deployment*.
 
-1.  Familiarize yourself with the
-    [documentation for the Deployment object](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#deployment-v1-apps).
-    Make sure you understand each attribute in the Deployment definition.
+        *Pods* are units of isolation that can group multiple containers
+        to accomplish a unit of work.
+        They can also be "scaled" by adding more of them in a deployment.
 
-1.  From the command line, apply your Kubernetes Deployment by running:
+    -   `pal-tracker-container`
+        Name of the container running as part
+        of a *Pod*, as part of a *Deployment*.
+
+        You can see it reference to the container image you built
+        and published in the last exercise.
+
+    Notice that there is no specfication for routing in the *Deployment*
+    resource.
+    In Kubernetes,
+    the *Deployment* resource has the sole responsibility of maintaining
+    the running number of workers in your application.
+    You will see routing accomplished with the other two resources later
+    in this lesson.
+
+1.  Apply your Kubernetes Deployment by running:
 
     ```terminal:execute
     command: kubectl apply -f deployment.yaml
     session: 1
     ```
 
-1.  To watch your Deployment as the Kubernetes objects are created,
-    run:
+1.  Watch your Deployment as the Kubernetes objects are created by
+    running the following:
 
     ```terminal:execute
     command: kubectl rollout status deployment/pal-tracker --watch
@@ -221,8 +190,12 @@ your application.
 # Verify your Deployment
 
 When applying the Kubernetes Deployment, behind the scenes it creates
-a Kubernetes Pod object.
-A Pod is a group of containers that are deployed together.
+a Kubernetes *Pod* object.
+A *Pod* is a group of containers that are deployed together to
+accomplish a specific work task in context of a deployment,
+and can be scaled out to multiple pods if needed to accomodate more
+load.
+
 In your case, you are deploying a single container application.
 
 1.  Check on the status of the Pod that was created by running:
@@ -248,108 +221,65 @@ In your case, you are deploying a single container application.
     take a look at the Events section of the `kubectl describe pod`
     output.
 
-# Access your application
+# Routing traffic to your application
 
-In the output of the `kubectl describe pod`, you might notice that there
-is an IP address for the Pod.
+There are two problems to solve with container orchestrated web
+application routing and handling inbound traffic coming from outside the
+platform:
+
+1.  How a web request from outside the platform makes it to inside the
+    platform's container network.
+    This is commonly called *Ingress access*.
+
+1.  How to figure out to which container to route the traffic inside the
+    platform.
+    This is commonly called *Service Discovery*.
+
+With Kubernetes,
+there are two platform *resources* to help you out.
+
+## Create and verify Kubernetes service
+
+In the output of the `kubectl describe pod`, you might notice that
+there is an IP address for the *Pod*.
 Unfortunately this IP address is only accessible from within the
 Kubernetes cluster.
-In addition your application runs on port 8080 which is by default not
-accessible to anyone inside or outside the cluster.
-To fix this you will start by creating a Service to allow traffic on
-port 8080 to access the Pod, then you will create an Ingress object to
-route traffic from outside the cluster to your Pod.
 
-## Create a Kubernetes Service
+Your application runs on port 8080 inside the container and its
+associated Pod,
+which is by default not accessible to anyone inside or outside the
+Kubernetes cluster.
 
-In Kubernetes, Service objects act as a single point of access for
-Pods.
-In your case, you want to provide the rest of the cluster access your
-Pod via port 8080.
+To address this issue,
+as *Service* resource description is provided to you.
 
-1.  Create a new file called `service.yaml` under the `k8s` directory
-    with the following structure:
+1.  Review the `~/exercises/k8s/service.yaml` file:
 
-    ```yaml
-    apiVersion:
-    kind:
-    metadata:
-      name:
-      labels:
-    spec:
-      type:
-      selector:
-      ports:
+    ```editor:open-file
+    file: ~/exercises/k8s/service.yaml
     ```
 
-1.  Using the documentation for the
-    [Service object](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#service-v1-core)
-    and the
-    [Service reference document](https://kubernetes.io/docs/concepts/services-networking/service/)
-    to fill in the values for `apiVersion` and `kind`.
-    Note that if the "Group" for the Kubernetes object is `core`, then
-    it does not need to be specified in front of the version in
-    `apiVersion`.
+    This is a bit going on here,
+    but important:
 
-1.  Provide values for the `metadata` section:
+    -   Notice the name of the service is `pal-tracker`,
+        and the referenced ports are on `8080`.
+        This is an internal name that can be referenced
+        like a hostname in DNS
+        (Kubernetes in fact uses an internal DNS for name resolution),
+        that could be referenced similarly like this within the
+        container network:
 
-    -   Name the Service object `pal-tracker`.
-    -   Set a single label with a key of `app` and a value of
-        `pal-tracker`.
+        `http://pal-tracker:8080`
 
-1.  Under the `spec` section:
+    -   Notice the `spec` section.
+        The `selector` section points the the pods that you deployed
+        previously in the exercise.
 
-    -   Set the `type` to `ClusterIP`.
-    -   Copy the labels applied to your Pod in your `deployment.yaml`
-        and paste them under `selector`.
-    -   Set the service exposed (incoming) `port` value of `8080`.
-
-        *Note:*
-
-        *The service spec needs to deal with two types of ports:*
-
-        -   *The incoming* `port`,
-            *that the service exposes to consumers.*
-        -   *The* `targetPort`,
-            *the port that the application instances*
-            *are set to listen on,*
-            *and that the service must know where to connect.*
-
-        *If the* `targetPort` *is not specified,*
-        *it defaults to the* `port` *configuration.*
-        *Given your app is already configured to run on port* `8080`,
-        *and the service exposed `port` is configured to port* `8080`,
-        `targetPort` *configuration is not required.*
-
-1.  If you get stuck,
-    review the solution:
-
-    ```terminal:execute
-    command: git show deployment-solution:service.yaml
-    session: 2
-    ```
-
-1.  Before applying your `service.yaml`, make sure you understand what
-    is happening in this file.
-
-    Pay special attention to the `ports` and the `selector` fields in
-    the `service.yaml`.
-    Setting a port of 8080 means the Service will listen on port 8080,
-    and route requests to the Pod on 8080.
-
-    The `selector` field specifies which Pod(s) requests will be routed
-    to.
-    You will notice that you do not explicitly set the Pod's name here
-    (try running `kubectl get pods` to see your Pod's name).
-    Instead you use a selector which matches the labels applied to the
-    Pod.
-    View the labels applied to your Pod by running
-    `kubectl get pods --show-labels`, `kubectl describe pod POD-NAME`, or by
-    looking at the labels applied to the Pod under
-    `spec.template.metadata.labels` in the `deployment.yaml` file.
-    By using labels, your Pod can be destroyed, restarted or scaled and
-    the Service will route traffic to whichever Pods match the given
-    labels.
+        Kubernetes will associated any pods with the same name and
+        internal port of `8080` with the service name,
+        and register the container ip and port combinations with the
+        service name.
 
 1.  Create the Service by applying the change:
 
@@ -358,7 +288,7 @@ Pod via port 8080.
     session: 1
     ```
 
-1.  You can verify that the service was created by running:
+1.  Verify that the service was created by running:
 
     ```terminal:execute
     command: kubectl get services
@@ -368,11 +298,11 @@ Pod via port 8080.
     In the output you will see the Service you applied.
     You will notice the Service is of TYPE `ClusterIP` and has a
     CLUSTER-IP set.
-    Just like the Pod, this Cluster IP address is only accessible from
-    within the cluster.
-    The next step is to setup an Ingress object to route external
-    traffic to your Service, which in turn will route traffic to the Pod
-    running your application.
+
+    **Just like the Pod, this Cluster IP address is only accessible**
+    **from within the cluster.**
+
+    The next section will solve that problem.
 
 1.  Verify the endpoints, the IP addresses of the pods, by describing
     the `pal-tracker` service:
@@ -382,70 +312,50 @@ Pod via port 8080.
     session: 1
     ```
 
-### More about Services and Service Types
+## Create and verify Kubernetes Ingress
 
-In this lab you see a Service type of `ClusterIP`.
-It is the default way to expose a service,
-but only internally to other containers within the cluster.
-In the next section you will use an `Ingress` to externalize your
-service,
-but it is worth mentioning that Kubernetes supports various service
-types to expose your services, dependent on specific needs.
+Kubernetes provides multiple solutions for handling the problem of
+external access to the platform network.
 
-You can read about them at the Kubernetes
-[`ServiceTypes` reference](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
-for more information.
+You will use a Kubernetes *Ingress* that uses an Nginx device to route
+the traffic.
 
-## Create a Kubernetes Ingress object
+Currently you only have one application (deployment) running on the cluster,
+so you can route all traffic to the same place.
 
-You do this by creating an Kubernetes Ingress object.
-Currently you only have one application running on the cluster, so you
-can route all traffic to the same place.
+1.  Review the `~/exercises/k8s/ingress.yaml` file:
 
-1.  Create a new file called `ingress.yaml` under the `k8s` directory.
-
-1.  Refer to the [API documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#ingress-v1-networking-k8s-io)
-    and the [Ingress guide](https://kubernetes.io/docs/concepts/services-networking/ingress/)
-    to determine what the structure of this file should be.
-
-1.  Set the name of the Ingress object to `pal-tracker`.
-
-1.  Add a single label to the Ingress:
-
-    ```yaml
-    app: pal-tracker
+    ```editor:open-file
+    file: ~/exercises/k8s/ingress.yaml
     ```
 
-1.  The `defaultBackend` of the Ingress object needs to be tied into the
-    ClusterIP Service object you already created.
-    Do this by setting the Service name to `pal-tracker` and the Service
-    port number to `8080`.
+    This is a simple application with only one route and associated
+    endpoint,
+    so the resource description is simple:
 
-    You can verify that the Service name and the Service Port are
-    correct by running `kubectl get services`, or by checking the
-    `service.yaml` file for the values under `metadata.name` and
-    `spec.ports.port[0]`.
+    -   There is an ingress route already configured for you at
+        `{{ ingress_domain }}`.
+        The platform operator configured the platform to automatically
+        generate that for you.
 
-1.  If you get stuck,
-    review the solution:
+    -   The default backend `service` description points the ingress
+        router to the `pal-tracker` service exposed for port `8080`.
 
-    ```terminal:execute
-    command: git show deployment-solution:ingress.yaml
-    session: 2
-    ```
-
-1.  Create the Ingress object by applying the change using `kubectl`.
-    Verify the creation was successful by running `kubectl get ingress`.
+1.  Create the Ingress resource by applying the change using `kubectl`.
 
     ```terminal:execute
     command: kubectl apply -f ingress.yaml
     session: 1
     ```
 
+1.  Verify the creation was successful by running `kubectl get ingress`.
+
     ```terminal:execute
     command: kubectl get ingress
     session: 1
     ```
+
+1.  View details of the Ingress resource:
 
     ```terminal:execute
     command: kubectl describe ingress/pal-tracker
@@ -468,23 +378,14 @@ as well as the default domain.
     Notice that the default backend does not use host rule to route
     the request to the `pal-tracker` service.
 
-1.  Commit your new Kubernetes manifest yaml files to
-    git/GitHub.
+## Monitoring your platform
 
-    ```terminal:execute
-    command: git add *.yaml
-    session: 1
-    ```
+[Octant](https://octant.dev/) gives us a web interface to help inspect
+our Kubernetes cluster.
+It is not the full story on monitoring,
+for this lesson,
+sufficient to start.
 
-    ```terminal:execute
-    command: git commit -m'add k8s deployment resource definitions'
-    session: 1
-    ```
-
-## Octant
-
-[Octant](https://octant.dev/) gives us a web interface to help inspect our
-Kubernetes cluster.
 Use __Octant__ to view your Kubernetes cluster.
 
 1.  Navigate to the Console.
@@ -500,36 +401,29 @@ Use __Octant__ to view your Kubernetes cluster.
     namespace.
     You can drill into specific objects from this page.
 
-2.  Under `Deployments`, click on the `pal-tracker` deployment.
+1.  Under `Deployments`, click on the `pal-tracker` deployment.
     This is the `Summary` view for this object.
 
-3.  Select the `Resource Viewer` tab at the top of the page.
+1.  Select the `Resource Viewer` tab at the top of the page.
     This view shows the object graph associated with the currently
     selected object, the deployment.
     They should all be green.
     If there is a problem with your cluster, this is a good place to
     start troubleshooting.
 
-4.  Drill into your `Pods`, `ReplicaSets`, `Ingresses`, and `Services`.
+# Check your work
 
-    - How many Pods are running?
-    - What container image is it that is being used?
-    - What node is the Pod running on?
-    - How can you find this information using the `kubectl` command?
-
-# Submit this assignment
-
-Submit the assignment using the `cloudNativeDeveloperK8sDeployment`
-gradle task from within the existing `assignment-submission` project
+Execute a smoke test using the `cloudNativeDeveloperK8sDeployment`
+gradle task from within the existing `smoke-tests` project
 directory.
 It requires you to provide the URL of your application running on
 Kubernetes and the name of your Deployment.
 
-1.  Navigate to the `~/exercises/assignment-submission` directory in
+1.  Navigate to the `~/exercises/smoke-tests` directory in
     terminal 2:
 
     ```terminal:execute
-    command: cd ~/exercises/assignment-submission
+    command: cd ~/exercises/smoke-tests
     session: 2
     ```
 
@@ -540,35 +434,59 @@ Kubernetes and the name of your Deployment.
     session: 2
     ```
 
-    where `{{ ingress_domain }}` is your domain you visited in step 7 of
-    [Create a Kubernetes Ingress object](#create-a-kubernetes-ingress-object)
-    section.
-
 # Wrap
 
-Take a few minutes to review the resources you created in this lab
-for the
-[`pal-tracker` Kubernetes deployment]({{ ingress_protocol }}://{{ session_namespace }}.{{ ingress_domain }}/slides#/deploy-intro)
+Notice that Kubernetes container orchestration demonstrates the concepts
+of the system statement management reconciliation loop you saw in the
+early lectures:
 
-Notice the relationships between the various resources,
-including the metadata and labels.
+1.  The application operator designates the *desired state* by applying
+    the Kubernetes deployment,
+    service and ingress resource specfications through the
+    `kubectl apply` command.
 
-## Kubernetes clusters and nodes
+1.  Kubernetes orchestrator will take all the necessary steps to make
+    the *active state* look like the desired state:
 
-Take a few minutes to read about
-[Kubernetes Clusters and Nodes]({{ ingress_protocol }}://{{ session_namespace }}.{{ ingress_domain }}/slides#/cluster-nodes)
+    -   Schedule and reserve resources from the Kubernetes cluster upon
+        which to run the resources necessary for the app.
+    -   Pull images needed to run the containers and associated *Pods*
+        and *Deployment*.
+    -   Start the Pods (containers).
+    -   Make the *Deployment* ready to do work.
+    -   Provide the Routing of external traffic to the deployment
+        through *Ingress* and *Service* resources.
 
-# Learning Outcomes
+Notice the complexity of all the moving parts.
 
-Now that you have completed the lab, you should be able to:
-::learningOutcomes::
+Also notice there is a lot of complexity in defining the Kubernetes
+resources necessary to deploy such a simple application.
+
+In more complex scenarios,
+the application operator has their work cut out for them.
+
+If you are interested in using Kubernetes as the backbone of your
+application deployments,
+make sure to checkout the
+[Kube Academy](https://kube.academy/) series of courses to get you
+started or the following Tanzu Developer Center topics:
+
+- [Container basics](https://tanzu.vmware.com/developer/workshops/lab-container-basics/)
+- [Kubernetes fundamentals](https://tanzu.vmware.com/developer/workshops/lab-k8s-fundamentals/)
+- [Getting started with Spring Boot on Kubernetes](https://tanzu.vmware.com/developer/workshops/spring-boot-k8s-getting-started/)
+
+More advanced tools are provided to help on the Application Operator
+journey for deploying Kubernetes hosted apps:
+
+- [Carvel](https://carvel.dev/)
+- [Getting started with Carvel](https://tanzu.vmware.com/developer/workshops/lab-getting-started-with-carvel/)
+- [Helm](https://helm.sh/)
+
 
 # Resources
 
-- [Using Kubeconfig](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 - [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
 - [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - [Pod](https://kubernetes.io/docs/concepts/workloads/pods/)
 - [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
 - [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
-- [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)

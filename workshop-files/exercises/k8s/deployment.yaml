@@ -10,7 +10,6 @@ spec:
       app: pal-tracker
       name: pal-tracker-pod
   template:
-    # Pod definition starts here
     metadata:
       labels:
         app: pal-tracker
