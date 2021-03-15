@@ -15,11 +15,14 @@ After completing the lab, you will be able to:
 
 # Getting started
 
--   Review the [Access and Deploy](https://docs.google.com/presentation/d/1ctnmoRcgbcVyBndFBDr00HtE23ky8GSqFIgKkRmo2Tw/present#slide=id.g7ea4a9dfdf_0_1813)
-    slides or the accompanying *Access and Deploy* lecture.
+Review the the following slides and/or associated lectures:
 
--   You are provided access to a Kubernetes cluster as your container
-    orchestrated platform to which you will deploy your application.
+-   [Accessing your platform](https://docs.google.com/presentation/d/1ctnmoRcgbcVyBndFBDr00HtE23ky8GSqFIgKkRmo2Tw/present)
+
+-   [Deploying an app](https://docs.google.com/presentation/d/1mzZurB3sDo-7_Rj0p6RKv_gajg1rvFitPUd02Yvr-f8/present)
+
+You are provided access to a Kubernetes cluster as your container
+orchestrated platform to which you will deploy your application.
 
 # Review the runtime deployment configuration
 
@@ -67,6 +70,15 @@ After completing the lab, you will be able to:
 
 1.  You have the `kubectl` command installed and pre-configured to
     authenticate and connect to a Kubernetes cluster.
+
+1.  Review the `KUBECONFIG` file in your environment,
+    this is a similar pattern that platforms use to provide
+    authentication and context to a specific platform installation:
+
+    ```terminal:execute
+    command: more ~/.kube/config
+    session: 1
+    ```
 
 # Platform resources and isolation
 

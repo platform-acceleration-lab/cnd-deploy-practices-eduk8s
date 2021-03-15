@@ -22,7 +22,7 @@ After completing the lab, you will be able to:
 # Getting started
 
 Review the
-[Containerize](https://docs.google.com/presentation/d/1RrDgRkuM5bSPHV6P5uvkvb9AFn10AMYq2V67gBShjUQ/present#slide=id.g7ea4a9dfdf_0_1813)
+[Containerize an app](https://docs.google.com/presentation/d/1RrDgRkuM5bSPHV6P5uvkvb9AFn10AMYq2V67gBShjUQ/present)
 slides or the accompanying *Containerize* lecture.
 
 In the previous lesson you ran your application locally using the gradle
