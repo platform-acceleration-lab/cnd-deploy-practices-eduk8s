@@ -69,7 +69,7 @@ spec:
           targetPort: 8080
         selector:
           deployment: $(workshop_namespace)-docs
-    - apiVersion: networking.k8s.io/v1beta1
+    - apiVersion: networking.k8s.io/v1
       kind: Ingress
       metadata:
         name: $(workshop_namespace)-docs
@@ -80,6 +80,12 @@ spec:
           http:
             paths:
             - backend:
-                serviceName: $(workshop_namespace)-docs
-                servicePort: 80
+                service:
+                  name: $(workshop_namespace)-docs
+                  port:
+                    number: 80
               path: /
+              pathType: Prefix
+        tls:
+        - hosts:
+          - $(workshop_namespace)-docs.$(ingress_domain)
