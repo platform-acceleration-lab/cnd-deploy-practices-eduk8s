@@ -26,7 +26,7 @@ modern container orchestrated platform.
 
 If you are already well versed on the Cloud Native fundamental practices
 and guidelines,
-perhaps the associated slideware and video content might be good 
+perhaps the associated slideware and video content might be good
 refreshers for you.
 
 If you are already familiar with Java, Spring, Spring Boot and/or
@@ -97,31 +97,21 @@ instructions.
 The slides are cloud provided google slides.
 If you follow the links,
 a separate browser tab will be opened with a presenters view.
-You can view the lecture speaker transcript by view the 
+You can view the lecture speaker transcript by view the
 speaker notes.
 
 ## Introduction
 
 Review the the following slides and/or associated lectures:
 
--   [Introduction](https://docs.google.com/presentation/d/1Bg9Ra_vMIzq4Gq5hfaZ0jopmKj1obvwov-Rk4xZbyBY/present#slide=id.g7ea4a9dfdf_0_1813)
+-   [Introduction (Lecture #1)](https://docs.google.com/presentation/d/1Bg9Ra_vMIzq4Gq5hfaZ0jopmKj1obvwov-Rk4xZbyBY/present#slide=id.g7ea4a9dfdf_0_1813)
 
--   [Personas](https://docs.google.com/presentation/d/1T5Tjcqf0R-njyGSH3AQ7KqGdkX-co-GM0jlVAjRMk1M/present#slide=id.g7ea4a9dfdf_0_1813)
+-   [Personas (Lecture #2)](https://docs.google.com/presentation/d/1T5Tjcqf0R-njyGSH3AQ7KqGdkX-co-GM0jlVAjRMk1M/present#slide=id.g7ea4a9dfdf_0_1813)
 
--   [Guidelines and Practices](https://docs.google.com/presentation/d/1QaBOfQK5_3DDNO9xi3I2N3gczM8243fUhvN7bPpLlcI/present#slide=id.gb51335f931_1_156)
+-   [Guidelines and Practices (Lecture #3)](https://docs.google.com/presentation/d/1QaBOfQK5_3DDNO9xi3I2N3gczM8243fUhvN7bPpLlcI/present#slide=id.gb51335f931_1_156)
 
--   [Platform Concepts](https://docs.google.com/presentation/d/1fepud2V36GcsUNrUA1Aaz23q0CRFqvSs_a0yr5ehUTc/present#slide=id.g7ea4a9dfdf_0_1813)
+-   [Platform Concepts (Lecture #4)](https://docs.google.com/presentation/d/1fepud2V36GcsUNrUA1Aaz23q0CRFqvSs_a0yr5ehUTc/present#slide=id.g7ea4a9dfdf_0_1813)
 
 It is important to understand the reasons driving adoption of cloud
 native principles and practices,
 along with key concepts.
-
-## Disclaimer
-
-**It is beyond the scope of this workshop to teach you Java, Spring,**
-**Spring Boot, Kubernetes or product specifics in this workshop.**
-
-But you will be supplied with some basic clues about how the they
-relate to the *concepts* discussed in the workshop,
-and some separate references if you want to dig into the implementation
-details a bit more.

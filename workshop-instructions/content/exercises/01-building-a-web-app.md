@@ -15,9 +15,9 @@ on your "local" development environment.
 
 # Getting started
 
-Review the
-[Blocking web apps](https://docs.google.com/presentation/d/1lMcWJLcnp3w3qf5UAa2CWnd_VPbH15rMri6jtoolNAs/present)
-slides or the accompanying *Introduction* lecture.
+Review the the following slides and/or associated lectures:
+
+- [Blocking web apps (Lecture #5)](https://docs.google.com/presentation/d/1lMcWJLcnp3w3qf5UAa2CWnd_VPbH15rMri6jtoolNAs/present)
 
 # Project structure
 

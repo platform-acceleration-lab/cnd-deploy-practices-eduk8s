@@ -17,9 +17,9 @@ After completing the lab, you will be able to:
 
 Review the the following slides and/or associated lectures:
 
--   [Accessing your platform](https://docs.google.com/presentation/d/1ctnmoRcgbcVyBndFBDr00HtE23ky8GSqFIgKkRmo2Tw/present)
+-   [Accessing your platform (Lecture #7)](https://docs.google.com/presentation/d/1ctnmoRcgbcVyBndFBDr00HtE23ky8GSqFIgKkRmo2Tw/present)
 
--   [Deploying an app](https://docs.google.com/presentation/d/1mzZurB3sDo-7_Rj0p6RKv_gajg1rvFitPUd02Yvr-f8/present)
+-   [Deploying an app (Lecture #8)](https://docs.google.com/presentation/d/1mzZurB3sDo-7_Rj0p6RKv_gajg1rvFitPUd02Yvr-f8/present)
 
 You are provided access to a Kubernetes cluster as your container
 orchestrated platform to which you will deploy your application.

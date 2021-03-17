@@ -21,9 +21,9 @@ After completing the lab, you will be able to:
 
 # Getting started
 
-Review the
-[Containerize an app](https://docs.google.com/presentation/d/1RrDgRkuM5bSPHV6P5uvkvb9AFn10AMYq2V67gBShjUQ/present)
-slides or the accompanying *Containerize* lecture.
+Review the the following slides and/or associated lectures:
+
+- [Containerize an app (Lecture #6)](https://docs.google.com/presentation/d/1RrDgRkuM5bSPHV6P5uvkvb9AFn10AMYq2V67gBShjUQ/present)
 
 In the previous lesson you ran your application locally using the gradle
 `bootRun` task.
