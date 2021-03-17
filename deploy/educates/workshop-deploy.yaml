@@ -89,3 +89,4 @@ spec:
         tls:
         - hosts:
           - $(workshop_namespace)-docs.$(ingress_domain)
+          secretName: eduk8s-wildcard-tls # TODO, determine if this is educates generic or ESP specific
