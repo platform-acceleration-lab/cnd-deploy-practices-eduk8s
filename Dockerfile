@@ -5,5 +5,5 @@ COPY workshop-instructions /build/workshop
 WORKDIR /build
 RUN tar -czf workshop.tar.gz .
 
-FROM nginx:1.19.2-alpine
+FROM nginxinc/nginx-unprivileged:1.19-alpine
 COPY --from=0 /build /usr/share/nginx/html
