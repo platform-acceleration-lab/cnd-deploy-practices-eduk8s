@@ -1,5 +1,7 @@
 # Building and deploying a Cloud Native app
 
+## Newcomers
+
 So maybe you have heard the following buzzwords,
 but really do not understand what they mean,
 what they are about,
@@ -20,6 +22,32 @@ platform.
 Along the way you will build and deploy a basic web application to a
 modern container orchestrated platform.
 
+## Non-newcomers
+
+If you are already well versed on the Cloud Native fundamental practices
+and guidelines,
+perhaps the associated slideware and video content might be good 
+refreshers for you.
+
+If you are already familiar with Java, Spring, Spring Boot and/or
+Kubernetes,
+you might find the exercises and accompanying slideware and video
+lecture a good way to re-inforce your understanding of how the tools
+fit with the Cloud Native landscape,
+and why you use them.
+
+## Tools
+
+If you are coming to this workshop to learn how to use Spring or
+Spring Boot to solve X,
+or how to use Kubernetes to solve Y,
+well,
+*this workshop is not for you*.
+
+You will be better served by the product specific tracks in the
+[Tanzu Developer Center](https://tanzu.vmware.com/developer/),
+or [KubeAcademy](https://kube.academy/).
+
 ## Learning outcomes
 
 After completing the workshop,
@@ -32,6 +60,45 @@ you will be able to:
 
 -   Explain some of the challenges of deploying applications in a
     cloud native architecture
+
+## House keeping
+
+### Exercises
+
+To run the workshop,
+you need a modern browser,
+preferrably with custom shortcut plugins (like vimium) turned off.
+
+That is it.
+
+The workshop will provide a simulated "local" development environment
+that runs in the Cloud,
+and you are also provided a slice of a Kubernetes cluster as your
+application deployment platform.
+
+Follow the instructions precisely,
+you can use the action links to handle the navigation for you.
+
+### Lectures
+
+The lectures are a virtual instructor narrative using the
+slideware to present key Cloud Native foundational concepts.
+
+You can access the lectures in the *Lecture* dashboard.
+It supplies a playlists in order as specified in this intro,
+as well as the exercises.
+
+For best learning experience,
+we recommend you follow the sequence as prescribed in the
+instructions.
+
+### Slideware
+
+The slides are cloud provided google slides.
+If you follow the links,
+a separate browser tab will be opened with a presenters view.
+You can view the lecture speaker transcript by view the 
+speaker notes.
 
 ## Introduction
 

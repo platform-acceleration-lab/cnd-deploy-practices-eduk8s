@@ -9,4 +9,6 @@ modules:
     name: Containerizing an App
   exercises/03-deploy:
     name: Deploying a Containerized App
+  wrap:
+    name: Wrap Up
     exit_sign: Finish Workshop

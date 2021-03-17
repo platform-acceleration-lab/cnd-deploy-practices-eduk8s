@@ -494,7 +494,6 @@ journey for deploying Kubernetes hosted apps:
 - [Getting started with Carvel](https://tanzu.vmware.com/developer/workshops/lab-getting-started-with-carvel/)
 - [Helm](https://helm.sh/)
 
-
 # Resources
 
 - [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)

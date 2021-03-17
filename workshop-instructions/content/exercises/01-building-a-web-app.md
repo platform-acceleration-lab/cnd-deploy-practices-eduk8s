@@ -290,7 +290,14 @@ It requires you to provide the URL of your application running locally.
     session: 1
     ```
 
+# Wrap
+
+In this exercise you did the bare minimum to get up a web application running on your local development workstation.
+
+If you are looking to bootstrap spring boot projects,
+checkout the [Spring Initializr](https://start.spring.io) as well
+as the [Spring quickstart](https://spring.io/quickstart).
+
 # Resources
 
-- [Spring Initializr](https://start.spring.io)
 - [12 factor applications](https://12factor.net)
