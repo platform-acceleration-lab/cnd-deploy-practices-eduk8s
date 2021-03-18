@@ -156,6 +156,32 @@ you will need to apply the updates:
     kubectl apply -f resources/training-portal.yaml
     ```
 
+## Deployment steps to ESP staging educates cluster
+
+1.  Acquire access to [VMware Cloud Services](https://console.cloud.vmware.com/)
+
+    -   Check that you have access to the organization named `GTIX-VES`
+    -   If not: email [Maria Blagoeva](mailto:mblagoeva@vmware.com) and
+        request access to ESP staging educates clusters
+
+1.  Download K8s configuration file
+
+    -   Click the `VMware Tanzu Mission Control` (TMC) service
+    -   In the TMC, in the list of clusters, select the cluster named `kube-test-a351ffe`
+    -   In the upper left hand corner, under "actions", select "access this cluster"
+    -   Download the kubeconfig file
+
+1.  Configure K8s locally: Execute following commands in a terminal window
+
+    -   export KUBECONFIG=<path-to-kubeconfig-file>
+    -   kubectl config view
+
+1.  Download and install Tanzu Mission Control CLI ("tmc")
+
+    -   Follow the [instruction](https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-7EEBDAEF-7868-49EC-8069-D278FD100FD9.html?hWord=N4IghgNiBcIC4FsDGIC+Q)
+
+Now you should be able to deploy workshops, trainingportals, etc.. per the educates documentation.
+
 ## Authoring / Maintaining
 
 Authoring is the process of updating the workshop content,

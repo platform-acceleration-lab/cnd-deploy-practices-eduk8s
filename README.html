@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.18.1/lib/index.min.js">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markdown-it-texmath@0.6.5/css/texmath.css">
+<link rel="stylesheet" href="https://gitcdn.xyz/repo/goessner/mdmath/master/css/vscode-texmath.css">
+
+</head>
+<body class="markdown-body">
+<h1 id="readme" data-line="0" class="code-line">README</h1>
+<p data-line="2" class="code-line">Welcome to the Developer Cloud Native Deployment practices workshop.</p>
+<p data-line="4" class="code-line">This page is for maintainers,
+not for students.</p>
+<p data-line="7" class="code-line">Before getting into the workshop series,
+it is necessary to outline the structure of this project.</p>
+<h2 id="scripts" data-line="10" class="code-line">Scripts</h2>
+<p data-line="12" class="code-line">The <code>scripts</code> directory contains convenience scripts to help the
+developer/maintainer with local development builds.</p>
+<p data-line="16" class="code-line">See the
+<a href="#authoring--maintaining" data-href="#authoring--maintaining">Authoring / Maintaining</a> section for
+recommended maintainer workflows.</p>
+<h2 id="workshop" data-line="20" class="code-line">Workshop</h2>
+<p data-line="22" class="code-line">The workshop contains one or more lessons and associated lab exercises
+the fit together,
+and can be executed by a user within 2 hours.</p>
+<p data-line="26" class="code-line">Each workshop is built as a separate container,
+and contains a &quot;bootstrap&quot; script that will set the state of the user's
+development environment before starting the workshop session.</p>
+<p data-line="30" class="code-line">The workshop contains the instruction content for the user:</p>
+<h3 id="overview" data-line="32" class="code-line">Overview</h3>
+<p data-line="34" class="code-line">The <a href="./workshop/content/intro.md" data-href="./workshop/content/intro.md">Intro</a> file is the overview page -
+it is the &quot;home page&quot; of the workshop.</p>
+<h3 id="exercises" data-line="37" class="code-line">Exercises</h3>
+<p data-line="39" class="code-line">The bulk of the workshop is to guide the user through 1 or more lab
+exercises.</p>
+<p data-line="42" class="code-line">Each exercise will add, update or remove code or configuration
+artifacts,
+and result in one of the various configurations of a cloud native app
+running in a Kubernetes cluster to demonstrate a development or
+operator concept.</p>
+<h2 id="building" data-line="48" class="code-line">Building</h2>
+<h3 id="development-environment" data-line="50" class="code-line">Development environment</h3>
+<p data-line="52" class="code-line">Minikube and Kind are supported for Educates.
+This workshop uses the <em>container registry per session</em> feature,
+which requires use of <code>docker</code> container runtime to support
+insecure Docker registries.</p>
+<p data-line="57" class="code-line">If you are running MacOS or Linux,
+you can run the convenience script <code>scripts/deploy-minikube.sh</code>.</p>
+<p data-line="60" class="code-line">Or you can install minikube and the Educates Operator manually
+as follows:</p>
+<ol>
+<li data-line="63" class="code-line">
+<p data-line="63" class="code-line">Set up a minikube environment as follows:</p>
+<pre><code data-line="65" class="code-line language-bash"><div>minikube start --driver=hyperkit|virtualbox|kvm2 --insecure-registry=192.168.64.0/24 --memory=8Gi
+minikube addons <span class="hljs-built_in">enable</span> ingress
+minikube addons <span class="hljs-built_in">enable</span> ingress-dns
+minikube addons <span class="hljs-built_in">enable</span> registry
+</div></code></pre>
+<p data-line="72" class="code-line"><em>select the appropriate hypervisor for your development platform.</em>
+<em>For mac recommend <code>--driver=hyperkit</code></em>
+<em>For Windows recommend <code>--driver=virtualbox</code></em>
+<em>For Windows10 Pro recommend <code>--driver=hyperv</code></em>
+<em>For Linux recommend <code>--driver=kvm2</code></em></p>
+<p data-line="78" class="code-line"><em>select the appropriate local subnet according to your minikube</em>
+<em>installation.</em>
+<em>Verify the subnet after minikube starts by gettings its ip address:</em>
+<em><code>minikube ip</code></em></p>
+<p data-line="83" class="code-line">See <a href="https://medium.com/@JockDaRock/minikube-on-windows-10-with-hyper-v-6ef0f4dc158c" data-href="https://medium.com/@JockDaRock/minikube-on-windows-10-with-hyper-v-6ef0f4dc158c">this article</a> for HyperV setup.
+You can skip creating the new virtual adapter as it is not needed.</p>
+</li>
+<li data-line="86" class="code-line">
+<p data-line="86" class="code-line">Set up the
+<a href="https://docs.edukates.io/en/latest/getting-started/installing-operator.html" data-href="https://docs.edukates.io/en/latest/getting-started/installing-operator.html"><em>Educates Operator</em></a>:</p>
+<pre><code data-line="89" class="code-line language-bash"><div>kubectl apply -k <span class="hljs-string">&quot;github.com/eduk8s/eduk8s?ref=master&quot;</span>
+kubectl <span class="hljs-built_in">set</span> env deployment/eduk8s-operator -n eduk8s INGRESS_DOMAIN=<span class="hljs-string">&quot;<span class="hljs-subst">$(minikube ip)</span>.nip.io&quot;</span>
+</div></code></pre>
+</li>
+<li data-line="94" class="code-line">
+<p data-line="94" class="code-line">Set up a proxy for the minikube hosted container registry:</p>
+<p data-line="96" class="code-line">On Mac or Linux:</p>
+<pre><code data-line="98" class="code-line language-bash"><div><span class="hljs-comment"># proxy localhost:5000 to said minikube registry..</span>
+<span class="hljs-comment"># from https://minikube.sigs.k8s.io/docs/handbook/registry/#docker-on-macos</span>
+docker run --rm -d -it --network=host alpine ash -c <span class="hljs-string">&quot;apk add socat &amp;&amp; socat TCP-LISTEN:5000,reuseaddr,fork TCP:<span class="hljs-subst">$(minikube ip)</span>:5000&quot;</span>
+</div></code></pre>
+<p data-line="104" class="code-line">On Windows:</p>
+<pre><code data-line="106" class="code-line language-bash"><div><span class="hljs-comment"># proxy localhost:5000 to said minikube registry..</span>
+<span class="hljs-comment"># from https://minikube.sigs.k8s.io/docs/handbook/registry/#docker-on-windows</span>
+kubectl port-forward --namespace kube-system &lt;name of the registry vm&gt; 5000:5000
+docker run --rm -d -it --network=host alpine ash -c <span class="hljs-string">&quot;apk add socat &amp;&amp; socat TCP-LISTEN:5000,reuseaddr,fork TCP:<span class="hljs-subst">$(minikube ip)</span>:5000&quot;</span>
+</div></code></pre>
+</li>
+<li data-line="113" class="code-line">
+<p data-line="113" class="code-line">Build the workshop docker images.
+Each will generate and contain all the static source,
+as well as packaging a <code>code-server</code> editor.
+It will also generate the codebase git repo from exploded source
+files,
+and put in the <code>~/exercises</code> workspace folder.</p>
+<p data-line="120" class="code-line"><code>./scripts/build-dev-images.sh</code></p>
+</li>
+<li data-line="122" class="code-line">
+<p data-line="122" class="code-line">Deploy the workshop and associated training portal:</p>
+<pre><code data-line="124" class="code-line language-bash"><div>kubectl apply -f resources/
+</div></code></pre>
+</li>
+<li data-line="128" class="code-line">
+<p data-line="128" class="code-line">Verify the training portal and associated URL:</p>
+<pre><code data-line="130" class="code-line language-bash"><div>kubectl get trainingportals
+</div></code></pre>
+<p data-line="134" class="code-line">You should see similar to following output:</p>
+<pre><code data-line="136" class="code-line language-no-highlight"><code><div>╰─$ kubectl get trainingportals
+NAME                      URL                                                     ADMINUSERNAME   ADMINPASSWORD
+cnd-deploy-practices   http://cnd-deploy-practices-ui.192.168.39.6.nip.io   eduk8s          sH1VoxEiWGNhaIQgt2Fjwvpe0mldC9u
+</div></code></code></pre>
+</li>
+</ol>
+<p data-line="142" class="code-line">If you are updating the training portal or one of the various workshop
+configurations,
+you will need to apply the updates:</p>
+<ol>
+<li data-line="146" class="code-line">
+<p data-line="146" class="code-line">Workshop configuration:</p>
+<pre><code data-line="148" class="code-line language-bash"><div>kubectl apply -f resources/workshop.yaml
+</div></code></pre>
+</li>
+<li data-line="152" class="code-line">
+<p data-line="152" class="code-line">Training portal configuration:</p>
+<pre><code data-line="154" class="code-line language-bash"><div>kubectl apply -f resources/training-portal.yaml
+</div></code></pre>
+</li>
+</ol>
+<h2 id="deployment-steps-to-esp-staging-educates-cluster" data-line="158" class="code-line">Deployment steps to ESP staging educates cluster</h2>
+<ol>
+<li data-line="160" class="code-line">
+<p data-line="160" class="code-line">Acquire access to <a href="https://console.cloud.vmware.com/" data-href="https://console.cloud.vmware.com/">VMware Cloud Services</a></p>
+<ul>
+<li data-line="162" class="code-line">Check that you have access to the organization named <code>GTIX-VES</code></li>
+<li data-line="163" class="code-line">If not: email <a href="mailto:mblagoeva@vmware.com" data-href="mailto:mblagoeva@vmware.com">Maria Blagoeva</a> and
+request access to ESP staging educates clusters</li>
+</ul>
+</li>
+<li data-line="166" class="code-line">
+<p data-line="166" class="code-line">Download K8s configuration file</p>
+<ul>
+<li data-line="168" class="code-line">Click the <code>VMware Tanzu Mission Control</code> (TMC) service</li>
+<li data-line="169" class="code-line">In the TMC, in the list of clusters, select the cluster named <code>kube-test-a351ffe</code></li>
+<li data-line="170" class="code-line">In the upper left hand corner, under &quot;actions&quot;, select &quot;access this cluster&quot;</li>
+<li data-line="171" class="code-line">Download the kubeconfig file</li>
+</ul>
+</li>
+<li data-line="173" class="code-line">
+<p data-line="173" class="code-line">Configure K8s locally: Execute following commands in a terminal window</p>
+<ul>
+<li data-line="175" class="code-line">export KUBECONFIG=<path-to-kubeconfig-file></li>
+<li data-line="176" class="code-line">kubectl config view</li>
+</ul>
+</li>
+<li data-line="178" class="code-line">
+<p data-line="178" class="code-line">Download and install Tanzu Mission Control CLI (&quot;tmc&quot;)</p>
+<ul>
+<li data-line="180" class="code-line">Follow the <a href="https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-7EEBDAEF-7868-49EC-8069-D278FD100FD9.html?hWord=N4IghgNiBcIC4FsDGIC+Q" data-href="https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-7EEBDAEF-7868-49EC-8069-D278FD100FD9.html?hWord=N4IghgNiBcIC4FsDGIC+Q">instruction</a></li>
+</ul>
+</li>
+</ol>
+<p data-line="182" class="code-line">Now you should be able to deploy workshops, trainingportals, etc.. per the educates documentation.</p>
+<h2 id="authoring--maintaining" data-line="184" class="code-line">Authoring / Maintaining</h2>
+<p data-line="186" class="code-line">Authoring is the process of updating the workshop content,
+code,
+or workshop configuration.</p>
+<h3 id="flow" data-line="190" class="code-line">Flow</h3>
+<p data-line="192" class="code-line">There are a few scenarios common with authoring:</p>
+<ol>
+<li data-line="194" class="code-line">Lab code/configuration updates</li>
+<li data-line="195" class="code-line">Lab instruction updates</li>
+<li data-line="196" class="code-line">Slide narrative updates</li>
+<li data-line="197" class="code-line">Training portal or workshop configuraton changes</li>
+<li data-line="198" class="code-line">A combination of the 4</li>
+</ol>
+<p data-line="200" class="code-line">The first two can be accomplished by the following steps:</p>
+<ol>
+<li data-line="202" class="code-line">
+<p data-line="202" class="code-line">Make the appropriate content changes,
+either in the markdown files,
+or code.</p>
+</li>
+<li data-line="206" class="code-line">
+<p data-line="206" class="code-line">Test locally by rebuilding and tagging:</p>
+<pre><code data-line="208" class="code-line language-bash"><div>docker build -t devonk8s-deploy .
+docker tag devonk8s-deploy localhost:5000/devonk8s-deploy
+</div></code></pre>
+</li>
+<li data-line="213" class="code-line">
+<p data-line="213" class="code-line">Publish locally (minikube):</p>
+<p data-line="215" class="code-line"><code>docker push localhost:5000/devonk8s-deploy</code></p>
+<p data-line="217" class="code-line">Or (Kind):</p>
+<p data-line="219" class="code-line"><code>kind load docker-image localhost:5000/devonk8s-deploy:latest --name &quot;cnd-deploy-practices&quot;</code></p>
+</li>
+<li data-line="221" class="code-line">
+<p data-line="221" class="code-line">Re-deployment of the workshop and training portal resources are not
+required.</p>
+<p data-line="224" class="code-line">You can merely terminate existing worksessions from the UI,
+or explicitly identify and terminate via the command line:</p>
+<p data-line="227" class="code-line">Identify the worker sessions:</p>
+<pre><code data-line="229" class="code-line language-bash"><div>kubectl get workshopsessions
+</div></code></pre>
+<p data-line="233" class="code-line">example output:</p>
+<pre><code data-line="235" class="code-line language-no-highlight"><code><div>╰─$ kubectl get workshopsessions
+NAME                               URL                                                            USERNAME   PASSWORD
+cnd-deploy-practices-w03-s001   http://cnd-deploy-practices-w03-s001.192.168.64.20.nip.io
+</div></code></code></pre>
+<p data-line="241" class="code-line">Delete the worker session(s):</p>
+<pre><code data-line="243" class="code-line language-bash"><div>kubectl delete workshopsession/cnd-deploy-practices-w03-s001
+</div></code></pre>
+<p data-line="247" class="code-line">This will terminate the associated workshop session pods.</p>
+<p data-line="249" class="code-line">New worksessions will start pods based from the last workshop images.</p>
+</li>
+</ol>
+<h3 id="lessons" data-line="251" class="code-line">Lessons</h3>
+<p data-line="253" class="code-line">The <a href="./workshop/content" data-href="./workshop/content">workshop content</a> contains all the meat of the
+course,
+lab instructions.</p>
+<h3 id="solution" data-line="257" class="code-line">Solution</h3>
+<p data-line="259" class="code-line">The <a href="./exercises" data-href="./exercises">exercises directory</a> contains the following:</p>
+<ul>
+<li data-line="261" class="code-line">
+<p data-line="261" class="code-line"><code>smoke-tests</code> directory contains the exercise smoke test
+project.</p>
+</li>
+<li data-line="264" class="code-line">
+<p data-line="264" class="code-line"><code>pal-tracker</code> directory contains the application source code</p>
+</li>
+<li data-line="265" class="code-line">
+<p data-line="265" class="code-line"><code>k8s</code> directory contains the deployment resource configurations.</p>
+</li>
+</ul>
+<h2 id="known-issues" data-line="267" class="code-line">Known issues</h2>
+<h3 id="kubernetes-cannot-pull-from-container-registry-minikube" data-line="269" class="code-line">Kubernetes cannot pull from container registry (minikube)</h3>
+<p data-line="271" class="code-line">Make sure you have configured the <code>--insecure-registry</code> flag to the
+correct subnet associated with your minikube installation.</p>
+<p data-line="274" class="code-line">You can verify the minikube ip address:</p>
+<pre><code data-line="276" class="code-line language-bash"><div>minikube ip
+</div></code></pre>
+<p data-line="280" class="code-line">If you misconfigured the flag,
+delete your minikube cluster and recreate with the correct value.</p>
+<h3 id="workshop-does-not-deploy-workhop-namespace-does-not-terminate" data-line="283" class="code-line">Workshop does not deploy, workhop namespace does not terminate</h3>
+<p data-line="285" class="code-line">You are attempting to update a workspace configuration,
+but it is not accessible through the training portal.</p>
+<ol>
+<li data-line="288" class="code-line">
+<p data-line="288" class="code-line">Verify the workhop session pods can pull the image during the
+initialization of a workshop session:</p>
+<pre><code data-line="291" class="code-line language-bash"><div>kubectl get po -A --field-selector metadata.namespace!=kube-system -w
+</div></code></pre>
+<p data-line="295" class="code-line">Watch for pod creation:</p>
+<pre><code data-line="297" class="code-line language-no-highlight"><code><div>
+</div></code></code></pre>
+</li>
+<li data-line="301" class="code-line">
+<p data-line="301" class="code-line">Verify you have no orphaned or dangling workshop sessions:</p>
+<pre><code data-line="303" class="code-line language-bash"><div>kubectl get workshopsessions
+</div></code></pre>
+<p data-line="307" class="code-line">Delete orphaned workshop session(s):</p>
+<pre><code data-line="309" class="code-line language-bash"><div>kubectl delete workshopsession/&lt;workshopsession name&gt;
+</div></code></pre>
+</li>
+</ol>
+
+</body></html>
