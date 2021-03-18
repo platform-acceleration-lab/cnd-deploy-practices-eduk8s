@@ -5,9 +5,13 @@ run: build educates-start
 
 educates-start:
 	deploy/kind.sh
+	deploy/educates/deploy.sh
 
 educates-stop:
 	deploy/kind.sh stop
+
+educates-reload:
+	deploy/educates/deploy.sh
 
 build:
 	docker build -t cnd-deploy-practices:latest .
