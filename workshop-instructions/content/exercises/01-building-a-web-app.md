@@ -232,15 +232,10 @@ web application compliant with the two following cloud native guidelines:
 
 # Run your application locally
 
-1.  Using your Gradle wrapper `gradlew` in the root of the `pal-tracker`
-    project,
-    run the `tasks` command to find which task to use to run your
-    application locally
-    (hint:
-    look under the *Application tasks* category)
+1.  Run your application using Gradle:
 
     ```terminal:execute
-    command: ./gradlew tasks
+    command: ./gradlew bootRun
     session: 1
     ```
 
