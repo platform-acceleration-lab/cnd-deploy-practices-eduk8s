@@ -11,7 +11,7 @@ spec:
   url: https://github.com/platform-acceleration-lab/cnd-deploy-practices-eduk8s
   content:
     image: quay.io/eduk8s/jdk11-environment
-    files: $(ingress_protocol)://$(workshop_namespace)-docs.$(ingress_domain)/workshop.tar.gz
+    files: http://$(workshop_namespace)-docs.$(ingress_domain)/workshop.tar.gz
   session:
     namespaces:
       budget: large
@@ -86,7 +86,3 @@ spec:
                     number: 80
               path: /
               pathType: Prefix
-        tls:
-        - hosts:
-          - $(workshop_namespace)-docs.$(ingress_domain)
-          secretName: eduk8s-wildcard-tls # TODO, determine if this is educates generic or ESP specific
