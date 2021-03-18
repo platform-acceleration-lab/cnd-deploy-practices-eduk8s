@@ -1,7 +1,10 @@
 # Deploying a Containerized App
 
 This lab will walk you through how to deploy a containerized web app to
-Kubernetes.
+a modern *container orchestrated* platform.
+
+The platform you will deploy to is
+[*Kubernetes*](https://kubernetes.io).
 
 # Learning Outcomes
 

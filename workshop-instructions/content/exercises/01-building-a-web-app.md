@@ -1,16 +1,18 @@
 # Building a blocking web application
 
 This exercise will walk you through building and running a basic
-blocking web application using
+blocking web application on your local development environment.
+
+You will use Java and
 [Spring Boot](https://projects.spring.io/spring-boot/)
-on your "local" development environment.
+as your language and framework to handle the low level details for you.
 
 # Learning outcomes
 
 -   Describe how to run a basic web application in a development
     environment.
 -   Describe how dependencies are declared and sourced when building
-    your Spring web application.
+    your web application.
 -   Explain benefits and trade-offs of blocking web applications.
 
 # Getting started
