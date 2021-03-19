@@ -120,17 +120,17 @@ it:
     }
     ```
 
-    -   The first plugin provides behaviors to build and run a spring
+    -   The `org.springframework.boot` plugin provides behaviors to build and run a spring
         boot application.
         You can read about it here:
-        [spring boot gradle plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-gradle-plugin.html).
+        [Spring Boot Gradle plugin](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins-gradle-plugin.html).
 
-    -   The second plugin specify dependency management behaviors
+    -   The `io.spring.dependency-management` plugin specify dependency management behaviors
         when building your Spring Boot application.
         You can read more about it here:
         [Spring Dependency Management plugin](https://plugins.gradle.org/plugin/io.spring.dependency-management)
 
-    -   The last plugin specifies that the Java language compiler and
+    -   The `java` plugin specifies that the Java language compiler and
         runtime are used to build and run your application.
         You can read about it here:
         [Java plugin](https://docs.gradle.org/current/userguide/java_plugin.html)
@@ -160,23 +160,22 @@ it:
     The "starter" dependency is specific for Spring Boot web blocking
     web applications.
     The starter will tell your build tool to pull in all the Java and
-    spring libraries needed to compile, package and run your web
+    Spring libraries needed to compile, package and run your web
     application.
 
-Your `build.gradle` file is an important part of making your spring boot
+Your `build.gradle` file is an important part of making your Spring Boot
 web application compliant with the two following cloud native guidelines:
 
 -   [Declaring your dependencies](https://12factor.net/dependencies):
-    A goal when deploying to a cloud native ready platform is to not
-    rely on arbitrary dependencies, such as language libraries,
-    when deploying the application.
+    A goal when deploying an application to a cloud native ready platform
+    is not to rely on arbitrary dependencies, such as language libraries.
     This project's build will provide a single *deployable* artifact that
     can be deployed either locally (for development purposes),
     or to a *Container orchestrator* (you will see in the third lesson).
 
 -   [Port binding](https://12factor.net/port-binding):
-    Another goal when deploying to a cloud native ready platform is to
-    not rely on arbitrary *Middleware* installations,
+    Another goal when deploying an application to a cloud native ready
+    platform is to not rely on arbitrary *Middleware* installations,
     such as web servers.
     This project's build will provide a single *runnable* artifact that
     can be run either locally (for development purposes),
@@ -253,16 +252,16 @@ web application compliant with the two following cloud native guidelines:
     session: 2
     ```
 
-Notice that the gradle `bootRun` task will implicitly compile the Java
+Notice that the Gradle `bootRun` task will implicitly compile the Java
 source code, load it into memory, and run it.
 
-It does not build an artifact you can deploy.
+It does not build an artifact you can deploy, however.
 You will see that in the next lesson.
 
-# Check your exercise
+# Run a smoke test
 
-Run the smoke test to verify you completed the exercise correctly by
-running the `cloudNativeDeveloperK8sBootApp` gradle task from within the
+Running a smoke test to verify you completed the exercise correctly by
+running the `cloudNativeDeveloperK8sBootApp` Gradle task from within the
 existing `smoke-tests` project directory.
 It requires you to provide the URL of your application running locally.
 
@@ -291,7 +290,8 @@ It requires you to provide the URL of your application running locally.
 
 # Wrap
 
-In this exercise you did a bare minimum to get up a web application running on your local development workstation.
+In this exercise you did a bare minimum to get up a web application
+running on your local development workstation.
 
 If you are looking to bootstrap Spring Boot projects,
 check out the [Spring Initializr](https://start.spring.io) as well
