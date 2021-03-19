@@ -380,16 +380,33 @@ At this point you have all the parts deployed to access your application.
 Access the default backend via both the K8s cluster IP address,
 as well as the default domain.
 
-1.  Visit the domain of your cluster using your web browser.
-    You will see the `hello` message rendered by your pal-tracker
-    application.
+1.  Visit the domain of your cluster using your web browser:
 
     ```dashboard:open-url
     url: http://{{ ingress_domain }}
     ```
 
-    Notice that the default backend does not use host rule to route
-    the request to the `pal-tracker` service.
+1.  You should see one of two scenarios:
+
+    -   You may see a `502` or a `503` error code if you immediately
+        applied the Ingress object,
+        and immediately attempted to visit the application in your
+        browser.
+
+        Try waiting 5-10 seconds,
+        and refresh your browser.
+
+        This happens because your platform has to do the work to
+        register your backend service with your ingress (web server)
+        and that takes time.
+
+        It also highlights that you need to consider occasional failures
+        when you change the deployment of your application.
+
+        You will see more discussion how to handle in a later workshop
+        in this series.
+
+    -   The `hello` message rendered by your pal-tracker application.
 
 ## Monitoring your platform
 
