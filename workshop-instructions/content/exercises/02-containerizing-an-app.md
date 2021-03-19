@@ -4,7 +4,7 @@ This exercise should take you 30 minutes to complete.
 
 It will walk you through how to containerize an application.
 You will use a Gradle task provided by Spring Boot Plugin to
-generate container image.
+generate a container image.
 Behind the scenes,
 the Gradle task uses [Buildpacks](https://buildpacks.io/) to generate
 the image.
@@ -14,7 +14,7 @@ locally installed Docker container runtime.
 
 # Learning Outcomes
 
-After completing the lab, you will be able to:
+After completing this lesson, you will be able to:
 
 -   Describe how to generate a runnable container image for your
     application
@@ -84,7 +84,7 @@ To generate container images, you will be using a Gradle task.
     session: 1
     ```
 
-# Run your app using the container image locally
+# Run your app locally using the container image
 
 You will use the Docker runtime on your local environment to run your
 app.
@@ -167,7 +167,7 @@ You are now ready to publish your image to your container registry.
 # Check your exercise
 
 Run a smoke test using the
-`cloudNativeDeveloperK8sContainerizingAnApp` gradle task from within the
+`cloudNativeDeveloperK8sContainerizingAnApp` Gradle task from within the
 existing `smoke-tests` project directory.
 It requires you to provide the name of your container registry.
 
@@ -199,7 +199,7 @@ There are some issues to consider with this approach:
 -   How to ensure your dependencies in your application are free from
     malware or vulnerabilities?
 
--   What happens behind-the-scenes with the gradle `bootBuildImage`
+-   What happens behind-the-scenes with the Gradle `bootBuildImage`
     command?
 
 -   Where does this fit into an automated build and deployment pipeline?

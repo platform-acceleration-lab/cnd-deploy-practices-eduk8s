@@ -11,10 +11,14 @@ as your language and framework to handle the low level details for you.
 
 # Learning outcomes
 
+After completing this lesson, you will be able to:
+
 -   Describe how to run a basic web application in a development
     environment.
+
 -   Describe how dependencies are declared and sourced when building
     your web application.
+
 -   Explain benefits and trade-offs of blocking web applications.
 
 # Getting started

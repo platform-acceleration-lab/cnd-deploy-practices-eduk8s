@@ -10,7 +10,7 @@ The platform you will deploy to is
 
 # Learning Outcomes
 
-After completing the lab, you will be able to:
+After completing this lesson, you will be able to:
 
 -   Describe the resources required to deploy a containerized web app
     to a container orchestration platform.
