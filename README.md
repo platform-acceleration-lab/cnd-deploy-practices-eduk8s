@@ -88,6 +88,8 @@ The first two can be accomplished by the following steps:
     make reload
     ```
 
+1. Re-navigate to the link from the terminal window.
+
 ### Lessons
 
 The [workshop content](./workshop/content) contains all the meat of the
