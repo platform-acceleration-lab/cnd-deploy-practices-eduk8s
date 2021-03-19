@@ -3,7 +3,7 @@
 This exercise should take you 45 minutes to complete.
 
 It will walk you through how to deploy a containerized web app to
-a modern *container orchestrated* platform.
+a modern *container orchestration* platform.
 
 The platform you will deploy to is
 [*Kubernetes*](https://kubernetes.io).
@@ -13,10 +13,10 @@ The platform you will deploy to is
 After completing the lab, you will be able to:
 
 -   Describe the resources required to deploy a containerized web app
-    to a container orchestrated platform.
+    to a container orchestration platform.
 
--   Demonstrate the deployment of a web app to a container orchestrated
-    platform.
+-   Deploy a blocking web application to a modern container
+    orchestration platform.
 
 # Getting started
 
@@ -29,7 +29,7 @@ Review the the following slides and/or associated lectures:
     2 minutes
 
 You are provided access to a Kubernetes cluster as your container
-orchestrated platform to which you will deploy your application.
+orchestration platform to which you will deploy your application.
 
 # Review the runtime deployment configuration
 
@@ -242,7 +242,7 @@ In your case, you are deploying a single container application.
 
 # Routing traffic to your application
 
-There are two problems to solve with container orchestrated web
+There are two problems to solve with container orchestration web
 application routing and handling inbound traffic coming from outside the
 platform:
 
