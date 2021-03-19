@@ -1,5 +1,3 @@
-# Wrap up
-
 Now that you have finished all the exercises,
 and watched all the accompanying content,
 hopefully you realize there is a lot more stories to tell about Cloud
