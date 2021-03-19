@@ -1,4 +1,4 @@
-# Deploying a Containerized App
+
 
 This exercise should take you 45 minutes to complete.
 

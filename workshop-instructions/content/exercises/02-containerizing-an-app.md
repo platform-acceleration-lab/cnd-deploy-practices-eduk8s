@@ -1,4 +1,4 @@
-# Containerizing an App
+
 
 This exercise should take you 30 minutes to complete.
 

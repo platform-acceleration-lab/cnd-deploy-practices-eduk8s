@@ -1,4 +1,4 @@
-# Building a blocking web application
+
 
 This exercise should take you 30 minutes to complete.
 
