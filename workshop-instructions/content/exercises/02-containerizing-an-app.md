@@ -177,7 +177,7 @@ It requires you to provide the name of your container registry.
 1.  Run the smoke-tests command in terminal 2:
 
     ```terminal:execute
-    command: ./gradlew cloudNativeDeveloperK8sContainerizingAnApp -Prepository={{ registry_host }}/pal-tracker
+    command: ./gradlew cloudNativeDeveloperK8sContainerizingAnApp -Prepository=http://{{ registry_host }}/pal-tracker:v0
     session: 2
     ```
 

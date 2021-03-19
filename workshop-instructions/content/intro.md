@@ -14,8 +14,8 @@ and how they fit together:
 If that is you,
 this workshop is for you.
 
-You will be introduced the the reasons and basic concepts you will need
-to understand to successfully
+You will be introduced to the reasons and basic concepts you will need
+to understand how to successfully
 *build, deploy and operate* an application on a modern *orchestrated*
 platform.
 
