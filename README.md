@@ -126,6 +126,13 @@ The [exercises directory](./exercises) contains the following:
     -   export KUBECONFIG=<path-to-kubeconfig-file>
     -   kubectl config view
 
+1.  Get TMC API Token
+
+    -    Go to [VMware Cloud Services](https://console.cloud.vmware.com/)
+    -    Click on "my account" from the profile pulldown
+    -    Select the tab "api tokens" and generate yourself a token
+    -    Do "export TMC_API_TOKEN=<Your API Token>"
+
 1.  Download and install Tanzu Mission Control CLI ("tmc")
 
     -   Follow the [instruction](https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-7EEBDAEF-7868-49EC-8069-D278FD100FD9.html?hWord=N4IghgNiBcIC4FsDGIC+Q)
