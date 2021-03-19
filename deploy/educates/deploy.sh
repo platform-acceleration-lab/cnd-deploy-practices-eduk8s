@@ -8,8 +8,6 @@ DIR=$(dirname $0)
 if kubectl get trainingportals.training.eduk8s.io > /dev/null 2>&1; then
     kubectl delete trainingportals.training.eduk8s.io --all
     kubectl delete workshops.training.eduk8s.io --all
-    kubectl delete workshopsessions.training.eduk8s.io --all
-    sleep 20 # hate doing this but the kubectl delete commands for educates resources don't block like they're supposed to
 else
     echo "===== Installing educates"
     kubectl apply -k "github.com/eduk8s/eduk8s?ref=$EDUCATES_VERSION"
