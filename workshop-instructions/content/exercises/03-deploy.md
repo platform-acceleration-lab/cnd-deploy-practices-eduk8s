@@ -50,8 +50,8 @@ orchestration platform to which you will deploy your application.
 
 1.  Also notice these files are not stored with your application code.
 
-    The [configuration in the environment](https://12factor.net/config)
-    guideline *intent* is that you segregrate the code from the
+    The *intent* of the [configuration in the environment](https://12factor.net/config)
+    guideline is that you segregrate the code from the
     environment specific information,
     as they will vary along different dimensions (features vs runtime)
     and at different rates (one codebase, many deployments).
@@ -63,11 +63,11 @@ orchestration platform to which you will deploy your application.
     You will become familiar with each Kubernetes *resource* necessary
     to deploy your app in the remainder of this exercise.
 
-# Accessing your platform
+# Access your platform
 
 1.  It is necessary to access the platform via a self-service API.
-    You do not have direct access to the machine(s) where your code will
-    run.
+    You do not have direct access to the machine(s) where your
+    application will run.
 
 1.  You have the `kubectl` command installed and pre-configured to
     authenticate and connect to a Kubernetes cluster.
@@ -105,14 +105,14 @@ orchestration platform to which you will deploy your application.
 1.  This command returns a list of *resources* that support running your
     application on the Kubernetes platform,
     in your dedicated *namespace*.
-    You should see an output similar to the folowing:
+    You should see an output similar to the following:
 
     ```no-highlight
     No resources found in cnd-deploy-practices-w01-s002 namespace.
     ```
 
 -   Since you have not yet deployed your application,
-    your will see the message prefix of
+    you will see the message prefix of
     `No resources found`.
 
 -   Notice the `cnd-deploy-practices-w01-s002` is the *namespace*
@@ -190,10 +190,10 @@ deploy your application workloads.
 
     ```terminal:execute
     command: kubectl get deployments
-    session: 1
+    session: 2
     ```
 
-    You should see pal-tracker listed as a Deployment.
+    You should see `pal-tracker` listed as a Deployment.
     Since this is a snapshot you may see that there is a 0 listed under
     the AVAILABLE column, if
     this is the case run `kubectl get deployments` again and wait for

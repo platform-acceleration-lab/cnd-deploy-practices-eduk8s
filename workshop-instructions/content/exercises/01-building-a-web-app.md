@@ -259,7 +259,7 @@ You will see that in the next lesson.
 
 # Run a smoke test
 
-Running a smoke test to verify you completed the exercise correctly by
+Run a smoke test to verify you completed the exercise correctly by
 running the `cloudNativeDeveloperK8sBootApp` Gradle task from within the
 existing `smoke-tests` project directory.
 It requires you to provide the URL of your application running locally.
