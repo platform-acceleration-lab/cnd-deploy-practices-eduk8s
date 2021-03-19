@@ -243,7 +243,7 @@ web application compliant with the two following cloud native guidelines:
     You will see log output from Spring Boot and a line that says it is
     listening on port 8080.
 
-1.  Navigate to [localhost:8080](http://localhost:8080) and see that the
+1.  Navigate to `http://localhost:8080` and see that the
     application responds with a `hello` message:
 
     ```terminal:execute
