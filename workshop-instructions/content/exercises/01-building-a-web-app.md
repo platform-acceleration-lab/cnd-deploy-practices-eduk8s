@@ -1,6 +1,8 @@
 # Building a blocking web application
 
-This exercise will walk you through building and running a basic
+This exercise should take you 30 minutes to complete.
+
+It will walk you through building and running a basic
 blocking web application on your local development environment.
 
 You will use Java and
@@ -19,7 +21,8 @@ as your language and framework to handle the low level details for you.
 
 Review the the following slides and/or associated lectures:
 
-- [Blocking web apps (Lecture #5)](https://docs.google.com/presentation/d/1lMcWJLcnp3w3qf5UAa2CWnd_VPbH15rMri6jtoolNAs/present)
+-   [Blocking web apps (Lecture #5)](https://docs.google.com/presentation/d/1lMcWJLcnp3w3qf5UAa2CWnd_VPbH15rMri6jtoolNAs/present):
+    6 minutes
 
 # Project structure
 
@@ -239,11 +242,10 @@ web application compliant with the two following cloud native guidelines:
     session: 1
     ```
 
-1.  Once you find the task, use it to run your application.
-
     You will see log output from Spring Boot and a line that says it is
     listening on port 8080.
-    Navigate to [localhost:8080](http://localhost:8080) and see that the
+
+1.  Navigate to [localhost:8080](http://localhost:8080) and see that the
     application responds with a `hello` message:
 
     ```terminal:execute

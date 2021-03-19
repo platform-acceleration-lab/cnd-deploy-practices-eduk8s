@@ -1,5 +1,7 @@
 # Building and deploying a Cloud Native app
 
+The introduction review should take you 30 minutes to complete.
+
 ## Newcomers
 
 So maybe you have heard the following buzzwords,
@@ -104,13 +106,17 @@ speaker notes.
 
 Review the the following slides and/or associated lectures:
 
--   [Introduction (Lecture #1)](https://docs.google.com/presentation/d/1Bg9Ra_vMIzq4Gq5hfaZ0jopmKj1obvwov-Rk4xZbyBY/present#slide=id.g7ea4a9dfdf_0_1813)
+-   [Introduction (Lecture #1)](https://docs.google.com/presentation/d/1Bg9Ra_vMIzq4Gq5hfaZ0jopmKj1obvwov-Rk4xZbyBY/present#slide=id.g7ea4a9dfdf_0_1813):
+    8 minutes
 
--   [Personas (Lecture #2)](https://docs.google.com/presentation/d/1T5Tjcqf0R-njyGSH3AQ7KqGdkX-co-GM0jlVAjRMk1M/present#slide=id.g7ea4a9dfdf_0_1813)
+-   [Personas (Lecture #2)](https://docs.google.com/presentation/d/1T5Tjcqf0R-njyGSH3AQ7KqGdkX-co-GM0jlVAjRMk1M/present#slide=id.g7ea4a9dfdf_0_1813):
+    2 minutes
 
--   [Guidelines and Practices (Lecture #3)](https://docs.google.com/presentation/d/1QaBOfQK5_3DDNO9xi3I2N3gczM8243fUhvN7bPpLlcI/present#slide=id.gb51335f931_1_156)
+-   [Guidelines and Practices (Lecture #3)](https://docs.google.com/presentation/d/1QaBOfQK5_3DDNO9xi3I2N3gczM8243fUhvN7bPpLlcI/present#slide=id.gb51335f931_1_156):
+    4 minutes
 
--   [Platform Concepts (Lecture #4)](https://docs.google.com/presentation/d/1fepud2V36GcsUNrUA1Aaz23q0CRFqvSs_a0yr5ehUTc/present#slide=id.g7ea4a9dfdf_0_1813)
+-   [Platform Concepts (Lecture #4)](https://docs.google.com/presentation/d/1fepud2V36GcsUNrUA1Aaz23q0CRFqvSs_a0yr5ehUTc/present#slide=id.g7ea4a9dfdf_0_1813):
+    7 minutes
 
 It is important to understand the reasons driving adoption of cloud
 native principles and practices,

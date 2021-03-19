@@ -10,5 +10,5 @@ spec:
   - name: cnd-deploy-practices-deploy
     capacity: 1
     reserved: 0
-    expires: 120m
+    expires: 180m
     orphaned: 5m
