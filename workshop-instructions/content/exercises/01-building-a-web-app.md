@@ -19,7 +19,7 @@ as your language and framework to handle the low level details for you.
 
 # Getting started
 
-Review the the following slides and/or associated lectures:
+Review the following slides and/or associated lectures:
 
 -   [Blocking web apps (Lecture #5)](https://docs.google.com/presentation/d/1lMcWJLcnp3w3qf5UAa2CWnd_VPbH15rMri6jtoolNAs/present):
     6 minutes
