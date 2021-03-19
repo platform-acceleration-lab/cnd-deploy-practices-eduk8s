@@ -19,7 +19,7 @@ as your language and framework to handle the low level details for you.
 
 # Getting started
 
-Review the the following slides and/or associated lectures:
+Review the following slides and/or associated lectures:
 
 -   [Blocking web apps (Lecture #5)](https://docs.google.com/presentation/d/1lMcWJLcnp3w3qf5UAa2CWnd_VPbH15rMri6jtoolNAs/present):
     6 minutes
@@ -291,11 +291,11 @@ It requires you to provide the URL of your application running locally.
 
 # Wrap
 
-In this exercise you did the bare minimum to get up a web application running on your local development workstation.
+In this exercise you did a bare minimum to get up a web application running on your local development workstation.
 
-If you are looking to bootstrap spring boot projects,
-checkout the [Spring Initializr](https://start.spring.io) as well
-as the [Spring quickstart](https://spring.io/quickstart).
+If you are looking to bootstrap Spring Boot projects,
+check out the [Spring Initializr](https://start.spring.io) as well
+as the [Spring Quickstart](https://spring.io/quickstart).
 
 # Resources
 
