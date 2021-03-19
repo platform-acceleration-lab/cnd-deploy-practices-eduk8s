@@ -1,8 +1,4 @@
-
-
-This exercise should take you 30 minutes to complete.
-
-It will walk you through building and running a basic
+This exercise will walk you through building and running a basic
 blocking web application on your local development environment.
 
 You will use Java and
@@ -21,8 +17,7 @@ as your language and framework to handle the low level details for you.
 
 Review the following slides and/or associated lectures:
 
--   [Blocking web apps (Lecture #5)](https://docs.google.com/presentation/d/1lMcWJLcnp3w3qf5UAa2CWnd_VPbH15rMri6jtoolNAs/present):
-    6 minutes
+-   [Blocking web apps (Lecture #5)](https://docs.google.com/presentation/d/1lMcWJLcnp3w3qf5UAa2CWnd_VPbH15rMri6jtoolNAs/present)
 
 # Project structure
 

@@ -1,8 +1,4 @@
-
-
-This exercise should take you 45 minutes to complete.
-
-It will walk you through how to deploy a containerized web app to
+This exercise will walk you through how to deploy a containerized web app to
 a modern *container orchestration* platform.
 
 The platform you will deploy to is
@@ -22,11 +18,9 @@ After completing the lab, you will be able to:
 
 Review the the following slides and/or associated lectures:
 
--   [Accessing your platform (Lecture #7)](https://docs.google.com/presentation/d/1ctnmoRcgbcVyBndFBDr00HtE23ky8GSqFIgKkRmo2Tw/present):
-    3 minutes
+-   [Accessing your platform (Lecture #7)](https://docs.google.com/presentation/d/1ctnmoRcgbcVyBndFBDr00HtE23ky8GSqFIgKkRmo2Tw/present)
 
--   [Deploying an app (Lecture #8)](https://docs.google.com/presentation/d/1mzZurB3sDo-7_Rj0p6RKv_gajg1rvFitPUd02Yvr-f8/present):
-    2 minutes
+-   [Deploying an app (Lecture #8)](https://docs.google.com/presentation/d/1mzZurB3sDo-7_Rj0p6RKv_gajg1rvFitPUd02Yvr-f8/present)
 
 You are provided access to a Kubernetes cluster as your container
 orchestration platform to which you will deploy your application.

@@ -1,8 +1,4 @@
-
-
-This exercise should take you 30 minutes to complete.
-
-It will walk you through how to containerize an application.
+This exercise will walk you through how to containerize an application.
 You will use a Gradle task provided by Spring Boot Plugin to
 generate container image.
 Behind the scenes,
@@ -25,8 +21,7 @@ After completing the lab, you will be able to:
 
 Review the the following slides and/or associated lectures:
 
--   [Containerize an app (Lecture #6)](https://docs.google.com/presentation/d/1RrDgRkuM5bSPHV6P5uvkvb9AFn10AMYq2V67gBShjUQ/present):
-    5 minutes
+-   [Containerize an app (Lecture #6)](https://docs.google.com/presentation/d/1RrDgRkuM5bSPHV6P5uvkvb9AFn10AMYq2V67gBShjUQ/present)
 
 In the previous lesson you ran your application locally using the gradle
 `bootRun` task.
