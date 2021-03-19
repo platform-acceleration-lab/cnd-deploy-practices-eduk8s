@@ -81,6 +81,13 @@ orchestration platform to which you will deploy your application.
     session: 1
     ```
 
+1.  Abort the `more` command navigation by issuing <ctrl+c>
+
+    ```terminal:execute
+    command: <ctrl+c>
+    session: 1
+    ```
+
 # Platform resources and isolation
 
 1.  Platform operators have set up rules to provision a fixed amount of
@@ -236,9 +243,8 @@ In your case, you are deploying a single container application.
 
 # Routing traffic to your application
 
-There are two problems to solve with container orchestration web
-application routing and handling inbound traffic coming from outside the
-platform:
+There are two problems to solve when routing an external inbound request
+to a web application running on a container orchestration platform:
 
 1.  How a web request from outside the platform makes it to inside the
     platform's container network.
