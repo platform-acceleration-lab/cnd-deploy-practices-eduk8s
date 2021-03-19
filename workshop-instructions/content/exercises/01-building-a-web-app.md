@@ -60,9 +60,9 @@ You will set up your editor now to activate the
 
 1.  Watch the bottom status bar as the Java project management
     extensions are loaded,
-    this may take a minute.
+    this may take a minute or more.
     At the end of the process you will see a prompt for a project
-    creation archetype.
+    creation archetype under `Editor` menu.
     Dismiss it by hitting the ESC key.
 
     You should now see a "JAVA PROJECTS" view near the bottom of the
@@ -77,19 +77,19 @@ You will set up your editor now to activate the
 You need a build tool to compile and package your Java application.
 This project uses the [Gradle](https://gradle.org/) build tool.
 
-1.  Read about the [gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:adding_wrapper).
+1.  Read about the [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:adding_wrapper).
     It is used in this project to execute various tasks to build or
     run your web application locally.
 
 1.  Review the `gradle/wrapper/gradle-wrapper.properties` file in your
     code editor and review the `DISTRIBUTION_URL` value.
-    This is specific version of gradle that is pinned to this project
+    This is specific version of Gradle that is pinned to this project
     which guarantees
     [Environment parity](https://12factor.net/dev-prod-parity)
     of the build tool between the developer and various build and
     pipeline environments.
 
-# Review the gradle project
+# Review the Gradle project
 
 Now that once the plumbing of our application is set up,
 you can begin building a Spring Boot _Hello World_ application.
