@@ -206,7 +206,7 @@ When applying the Kubernetes Deployment, behind the scenes it creates
 a Kubernetes *Pod* object.
 A *Pod* is a group of containers that are deployed together to
 accomplish a specific work task in context of a deployment,
-and can be scaled out to multiple pods if needed to accomodate more
+and can be scaled out to multiple pods if needed to accommodate more
 load.
 
 In your case, you are deploying a single container application.
@@ -228,17 +228,16 @@ In your case, you are deploying a single container application.
     ```
 
     In the output of the above command, you should be able to verify
-    that the Pod is running a container using the pal-tracker image you
+    that the Pod is running a container using the `pal-tracker` image you
     published to the container registry.
     If you need to debug any issues,
-    take a look at the Events section of the `kubectl describe pod`
+    take a look at the `Events` section of the `kubectl describe pod`
     output.
 
-# Routing traffic to your application
+# Route traffic to your application
 
-There are two problems to solve with container orchestration web
-application routing and handling inbound traffic coming from outside the
-platform:
+There are two problems to solve when routing an external inbound request
+to a web application running on a container orchestration platform
 
 1.  How a web request from outside the platform makes it to inside the
     platform's container network.
@@ -246,7 +245,7 @@ platform:
 
 1.  How to figure out to which container to route the traffic inside the
     platform.
-    This is commonly called *Service Discovery*.
+    This is commonly called *Load Balancing*.
 
 With Kubernetes,
 there are two platform *resources* to help you out.
@@ -330,7 +329,7 @@ as *Service* resource description is provided to you.
 Kubernetes provides multiple solutions for handling the problem of
 external access to the platform network.
 
-You will use a Kubernetes *Ingress* that uses an Nginx device to route
+You will use a Kubernetes *Ingress* that uses an `Nginx` to route
 the traffic.
 
 Currently you only have one application (deployment) running on the cluster,
@@ -408,7 +407,7 @@ as well as the default domain.
 
     -   The `hello` message rendered by your pal-tracker application.
 
-## Monitoring your platform
+## Monitor your platform
 
 [Octant](https://octant.dev/) gives us a web interface to help inspect
 our Kubernetes cluster.
@@ -432,7 +431,7 @@ Use __Octant__ to view your Kubernetes cluster.
     You can drill into specific objects from this page.
 
 1.  Under `Deployments`, click on the `pal-tracker` deployment.
-    This is the `Summary` view for this object.
+    You will see the `Summary` view for this object.
 
 1.  Select the `Resource Viewer` tab at the top of the page.
     This view shows the object graph associated with the currently
@@ -476,7 +475,7 @@ early lectures:
     `kubectl apply` command.
 
 1.  Kubernetes orchestrator will take all the necessary steps to make
-    the *active state* look like the desired state:
+    the *active state* match the desired state:
 
     -   Schedule and reserve resources from the Kubernetes cluster upon
         which to run the resources necessary for the app.
