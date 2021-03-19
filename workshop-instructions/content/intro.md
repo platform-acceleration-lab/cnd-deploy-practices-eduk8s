@@ -34,7 +34,7 @@ refreshers for you.
 If you are already familiar with Java, Spring, Spring Boot and/or
 Kubernetes,
 you might find the exercises and accompanying slideware and video
-lecture a good way to re-inforce your understanding of how the tools
+lecture a good way to reinforce your understanding of how the tools
 fit with the Cloud Native landscape,
 and why you use them.
 
@@ -69,12 +69,12 @@ you will be able to:
 
 To run the workshop,
 you need a modern browser,
-preferrably with custom shortcut plugins (like vimium) turned off.
+preferably with custom shortcut plugins (like `Vimium`) turned off.
 
 That is it.
 
 The workshop will provide a simulated "local" development environment
-that runs in the Cloud,
+that runs on the Cloud,
 and you are also provided a slice of a Kubernetes cluster as your
 application deployment platform.
 
@@ -96,9 +96,9 @@ instructions.
 
 ### Slideware
 
-The slides are cloud provided google slides.
+The slides are cloud provided Google slides.
 If you follow the links,
-a separate browser tab will be opened with a presenters view.
+a separate browser tab will be opened with a presenter's view.
 You can view the lecture speaker transcript by view the
 speaker notes.
 
@@ -118,6 +118,6 @@ Review the the following slides and/or associated lectures:
 -   [Platform Concepts (Lecture #4)](https://docs.google.com/presentation/d/1fepud2V36GcsUNrUA1Aaz23q0CRFqvSs_a0yr5ehUTc/present#slide=id.g7ea4a9dfdf_0_1813):
     7 minutes
 
-It is important to understand the reasons driving adoption of cloud
-native principles and practices,
+It is important to understand the reasons driving adoption of Cloud
+Native principles and practices,
 along with key concepts.
