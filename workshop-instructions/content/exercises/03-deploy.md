@@ -446,7 +446,7 @@ Kubernetes and the name of your Deployment.
     session: 2
     ```
 
-1.  Run the assignment submission command in terminal 2:
+1.  Run the smoke-tests command in terminal 2:
 
     ```terminal:execute
     command: ./gradlew cloudNativeDeveloperK8sDeployment -PserverUrl=http://{{ ingress_domain }} -PdeploymentName=pal-tracker
