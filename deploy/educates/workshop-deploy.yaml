@@ -7,7 +7,7 @@ spec:
   description: Deploy a Cloud Native App on Kubernetes
   vendor: eduk8s.io
   difficulty: beginner
-  duration: 120m
+  duration: 240m
   url: https://github.com/platform-acceleration-lab/cnd-deploy-practices-eduk8s
   content:
     image: quay.io/eduk8s/jdk11-environment
