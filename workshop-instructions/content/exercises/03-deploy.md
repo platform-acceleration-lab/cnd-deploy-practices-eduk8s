@@ -81,6 +81,9 @@ orchestration platform to which you will deploy your application.
     session: 1
     ```
 
+    If your screen geometry does not allow you to see the entire file,
+    press the <space> bar to navigate down the file.
+
 1.  Abort the `more` command navigation by issuing <ctrl+c>
 
     ```terminal:execute
@@ -266,8 +269,9 @@ Kubernetes cluster.
 
 Your application runs on port 8080 inside the container and its
 associated Pod,
-which is by default not accessible to anyone inside or outside the
-Kubernetes cluster.
+which in a hardened environment will not be accessible to
+inside or outside the Kubernetes cluster without additional
+work.
 
 To address this issue,
 as *Service* resource description is provided to you.
