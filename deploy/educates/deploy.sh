@@ -1,13 +1,13 @@
 #!/bin/bash
 
 export EDUCATES_VERSION="develop"
+NAME="cnd-deploy-practices"
 
 DIR=$(dirname $0)
 
 if kubectl get trainingportals.training.eduk8s.io > /dev/null 2>&1; then
     kubectl delete trainingportals.training.eduk8s.io --all
     kubectl delete workshops.training.eduk8s.io --all
-    kubectl delete workshopsessions.training.eduk8s.io --all    
 else
     echo "===== Installing educates"
     kubectl apply -k "github.com/eduk8s/eduk8s?ref=$EDUCATES_VERSION"
@@ -20,6 +20,10 @@ else
     echo "===== Setting Ingress Domain to ${IPADDRESS}.nip.io"
     kubectl set env deployment/eduk8s-operator -n eduk8s INGRESS_DOMAIN="${IPADDRESS}.nip.io"
 fi
+
+# TODO - remove/isolate as this script should be all kubectl commonds and not kind specific commands
+echo "===== Loading image into cluster"
+kind load docker-image --name "${NAME}" ${NAME}:latest
 
 echo "===== Installing the workshop and training portal"
 kubectl apply -f $DIR
