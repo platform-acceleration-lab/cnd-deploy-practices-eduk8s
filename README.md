@@ -140,6 +140,30 @@ The [exercises directory](./exercises) contains the following:
 
 Now you should be able to deploy workshops, trainingportals, etc.. per the educates documentation.
 
+## Build and Deployment steps to ESP staging educates cluster
+
+I followed the following manual steps (I have not tried "make" on this)
+in order to deploy the workshop using Docker Hub as container registry.
+
+```
+export TMC_API_TOKEN=<Your TMC API Token>
+export KUBECONFIG=/Users/sang/Downloads/kubeconfig-kube-test-a351ffe.yml
+
+docker image prune -a
+docker delete <DockerHubID>/cnd-deploy-practices
+docker build -t <DockerHubID>/cnd-deploy-practices:latest .
+docker push <DockerHubID>/cnd-deploy-practices
+
+(change line number 57 of workshop-deploy.yaml
+to docker.io/<DockerHubID>/cnd-deploy-practices:latest)
+k delete trainingportals cnd-deploy-practices
+k apply -f ./deploy/educates/training-portal.yaml
+k apply -f ./deploy/educates/workshop-deploy.yaml
+k get all -A |grep cnd
+
+k get trainingportal
+```
+
 ## Known issues
 
 ### Kubernetes cannot pull from container registry (minikube)
