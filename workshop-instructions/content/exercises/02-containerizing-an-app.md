@@ -76,7 +76,7 @@ To generate container images, you will be using a Gradle task.
 
     ```terminal:execute
     command: docker images
-    session: 1
+    session: 2
     ```
 
 # Run your app locally using the container image
