@@ -451,9 +451,9 @@ Use __Octant__ to view your Kubernetes cluster.
     If there is a problem with your cluster, this is a good place to
     start troubleshooting.
 
-# Check your work
+# Run a smoke test
 
-Execute a smoke test using the `cloudNativeDeveloperK8sDeployment`
+Run a smoke test using the `cloudNativeDeveloperK8sDeployment`
 gradle task from within the existing `smoke-tests` project
 directory.
 It requires you to provide the URL of your application running on
