@@ -159,7 +159,7 @@ You are now ready to publish your image to your container registry.
     session: 1
     ```
 
-# Check your exercise
+# Run a smoke test
 
 Run a smoke test using the
 `cloudNativeDeveloperK8sContainerizingAnApp` Gradle task from within the
