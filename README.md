@@ -129,11 +129,12 @@ The [exercises directory](./exercises) contains the following:
 1.  Get TMC API Token
 
     -    Go to [VMware Cloud Services](https://console.cloud.vmware.com/)
-    -    Click on "my account" from the profile pulldown
-    -    Select the tab "api tokens" and generate yourself a token
+    -    Click on "My Account" from the profile pulldown
+    -    Select the tab "API Tokens" and generate yourself a token
+    -    Give a Token name and select "All Roles" under "Define Scopes" pane
     -    Do "export TMC_API_TOKEN=<Your API Token>"
 
-1.  Download and install Tanzu Mission Control CLI ("tmc")
+2.  Download and install Tanzu Mission Control CLI ("tmc")
 
     -   Follow the [instruction](https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-7EEBDAEF-7868-49EC-8069-D278FD100FD9.html?hWord=N4IghgNiBcIC4FsDGIC+Q)
 
