@@ -19,9 +19,11 @@ After completing this lesson, you will be able to:
 
 # Getting started
 
-Review the the following slides and/or associated lectures:
+Review the the *Containerize an app* slides and/or associated lectures:
 
--   [Containerize an app (Lecture #6)](https://docs.google.com/presentation/d/1RrDgRkuM5bSPHV6P5uvkvb9AFn10AMYq2V67gBShjUQ/present)
+-   [Slides](https://docs.google.com/presentation/d/1RrDgRkuM5bSPHV6P5uvkvb9AFn10AMYq2V67gBShjUQ/present)
+
+-   Lecture #6
 
 In the previous lesson you ran your application locally using the gradle
 `bootRun` task.
