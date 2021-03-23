@@ -27,11 +27,12 @@ educates-refresh:
 	deploy/platform/educates/deploy.sh loadContent ${NAME}
 
 build:
+	docker build -t ${CONTAINER_REPOSITORY}:${version} .
 	rm -rf build
-	mkdir -p build/workshop
-	cp -r workshop-files/* build
-	cp -r workshop-instructions/* build/workshop
-	tar -czf build/workshop.tar.gz -C build .
+	mkdir -p build
+	docker create --name ${NAME}-build ${CONTAINER_REPOSITORY}:${version}
+	docker cp ${NAME}-build:/usr/share/nginx/html/. build/
+	docker rm ${NAME}-build
 
 get-reporeg:
 	@echo "${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}"
