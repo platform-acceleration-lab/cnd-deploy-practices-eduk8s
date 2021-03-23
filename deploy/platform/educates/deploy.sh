@@ -30,7 +30,7 @@ loadWorkshop() {
 
     echo "===== Waiting for Trainging Portal to be Running"
     while true; do
-        if [[ `kubectl get trainingportals.training.eduk8s.io --no-headers` =~ "Running" ]]
+        if [[ `kubectl get trainingportals.training.eduk8s.io --no-headers | grep ${WORKSHOP_NAME}` =~ "Running" ]]
         then
             echo ""
             echo "===== Training Portal is now running"
