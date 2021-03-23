@@ -365,7 +365,7 @@ so you can route all traffic to the same place.
     so the resource description is simple:
 
     -   There is an ingress route already configured for you at
-        `{{ ingress_domain }}`.
+        `pal-tracker.{{ session_name }}.{{ ingress_domain }}`.
         The platform operator configured the platform to automatically
         generate that for you.
 
@@ -398,10 +398,10 @@ At this point you have all the parts deployed to access your application.
 Access the default backend via both the K8s cluster IP address,
 as well as the default domain.
 
-1.  Visit the domain of your cluster using your web browser:
+1.  Visit the domain of your application using your web browser:
 
     ```dashboard:open-url
-    url: http://{{ ingress_domain }}
+    url: http://pal-tracker.{{ session_name }}.{{ ingress_domain }}
     ```
 
 1.  You should see one of two scenarios:
@@ -478,7 +478,7 @@ Kubernetes and the name of your Deployment.
 1.  Run the smoke-tests command in terminal 2:
 
     ```terminal:execute
-    command: ./gradlew cloudNativeDeveloperK8sDeployment -PserverUrl=http://{{ ingress_domain }} -PdeploymentName=pal-tracker
+    command: ./gradlew cloudNativeDeveloperK8sDeployment -PserverUrl=http://pal-tracker.{{ session_name }}.{{ ingress_domain }} -PdeploymentName=pal-tracker
     session: 2
     ```
 
