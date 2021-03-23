@@ -11,7 +11,8 @@ it is necessary to outline the structure of this project.
 ## Deploy
 
 The `deploy` directory contains convenience scripts to help the
-developer/maintainer with local development builds.
+developer/maintainer with local development builds and deploying
+the workshop to local or remote clusters.
 
 
 See the
@@ -54,7 +55,7 @@ The development workflow is based on [https://github.com/vmware-tanzu-private/ed
 
 See that repo for pre-requisites and description of commands.
 
-### Running workshop
+### Running workshop locally
 
 1. `make`
 
@@ -85,10 +86,14 @@ The first two can be accomplished by the following steps:
 1.  Test locally by reloading the workshop:
 
     ```bash
-    make reload
+    make refresh
     ```
 
-1. Re-navigate to the link from the terminal window.
+1. Terminate your workshop session and launch a new one.
+
+Note, if you make changes to the `workshop-deploy.yaml` or
+`training-portal.yaml` then issue a `make reload` instead which
+will tear down the portal and workshop and recreate them.
 
 ### Lessons
 
@@ -142,28 +147,12 @@ Now you should be able to deploy workshops, trainingportals, etc.. per the educa
 
 ## Build and Deployment steps to ESP staging educates cluster
 
-I followed the following manual steps (I have not tried "make" on this)
-in order to deploy the workshop using Docker Hub as container registry.
+Make sure your `kubectl` current context is point to the ESP staging cluster
+and then run the following:
 
 ```
-export TMC_API_TOKEN=<Your TMC API Token>
-export KUBECONFIG=/Users/sang/Downloads/kubeconfig-kube-test-a351ffe.yml
-
-docker image prune -a
-docker delete <DockerHubID>/cnd-deploy-practices
-docker build -t <DockerHubID>/cnd-deploy-practices:latest .
-docker push <DockerHubID>/cnd-deploy-practices
-
-(change line number 57 of workshop-deploy.yaml
-to docker.io/<DockerHubID>/cnd-deploy-practices:latest)
-k delete trainingportals cnd-deploy-practices
-k apply -f ./deploy/educates/training-portal.yaml
-k apply -f ./deploy/educates/workshop-deploy.yaml
-k get all -A |grep cnd
-
-k get trainingportal
+make reload
 ```
-
 ## Known issues
 
 ### Kubernetes cannot pull from container registry (minikube)
