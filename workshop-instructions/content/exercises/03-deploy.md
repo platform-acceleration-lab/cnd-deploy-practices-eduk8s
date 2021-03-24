@@ -177,7 +177,7 @@ deploy your application workloads.
         You can see it reference to the container image you built
         and published in the last exercise.
 
-    Notice that there is no specfication for routing in the *Deployment*
+    Notice that there is no specification for routing in the *Deployment*
     resource.
     In Kubernetes,
     the *Deployment* resource has the sole responsibility of maintaining
