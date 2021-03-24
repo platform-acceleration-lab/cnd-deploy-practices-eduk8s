@@ -466,7 +466,7 @@ Kubernetes and the name of your Deployment.
 1.  Run the smoke-tests command in terminal 2:
 
     ```terminal:execute
-    command: ./gradlew cloudNativeDeveloperK8sDeployment -PserverUrl=http://pal-tracker.{{ session_name }}.{{ ingress_domain }} -PdeploymentName=pal-tracker
+    command: ./gradlew cloudNativeDeveloperK8sDeployment -PserverUrl=http://pal-tracker.{{ session_namespace }}.{{ ingress_domain }} -PdeploymentName=pal-tracker
     session: 2
     ```
 
