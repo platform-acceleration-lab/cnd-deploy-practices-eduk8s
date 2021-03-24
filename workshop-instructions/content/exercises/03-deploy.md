@@ -85,17 +85,7 @@ orchestration platform to which you will deploy your application.
     authentication and context to a specific platform installation:
 
     ```terminal:execute
-    command: more ~/.kube/config
-    session: 1
-    ```
-
-    If your screen geometry does not allow you to see the entire file,
-    press the <space> bar to navigate down the file.
-
-1.  Abort the `more` command navigation by issuing <ctrl+c>
-
-    ```terminal:execute
-    command: <ctrl+c>
+    command: kubectl config view
     session: 1
     ```
 
@@ -116,24 +106,22 @@ orchestration platform to which you will deploy your application.
 1.  To verify that `kubectl` is correctly configured, run the following
 
     ```terminal:execute
-    command: kubectl get all
+    command: kubectl get pod,svc,deploy
     session: 1
     ```
 
-1.  This command returns a list of *resources* that support running your
-    application on the Kubernetes platform,
-    in your dedicated *namespace*.
+1.  This command returns a list of pods, services, and deployments in your dedicated *namespace*.
     You should see an output similar to the following:
 
     ```no-highlight
-    No resources found in cnd-deploy-practices-w01-s002 namespace.
+    No resources found in {{ session_namespace }} namespace.
     ```
 
 -   Since you have not yet deployed your application,
     you will see the message prefix of
     `No resources found`.
 
--   Notice the `cnd-deploy-practices-w01-s002` is the *namespace*
+-   Notice the `{{ session_namespace }}` is the *namespace*
     of this example -
     you will likely see a different value as your dedicated *namespace*
     for this workshop.
@@ -365,7 +353,7 @@ so you can route all traffic to the same place.
     so the resource description is simple:
 
     -   There is an ingress route already configured for you at
-        `pal-tracker.{{ session_name }}.{{ ingress_domain }}`.
+        `pal-tracker.{{ session_namespace }}.{{ ingress_domain }}`.
         The platform operator configured the platform to automatically
         generate that for you.
 
@@ -401,7 +389,7 @@ as well as the default domain.
 1.  Visit the domain of your application using your web browser:
 
     ```dashboard:open-url
-    url: http://pal-tracker.{{ session_name }}.{{ ingress_domain }}
+    url: http://pal-tracker.{{ session_namespace }}.{{ ingress_domain }}
     ```
 
 1.  You should see one of two scenarios:
