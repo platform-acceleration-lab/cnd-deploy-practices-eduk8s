@@ -19,7 +19,7 @@ After completing this lesson, you will be able to:
 
 # Getting started
 
-Review the the *Containerize an app* slides and/or associated lectures:
+Review the *Containerize an app* slides and/or associated lectures:
 
 -   [Slides](https://docs.google.com/presentation/d/1RrDgRkuM5bSPHV6P5uvkvb9AFn10AMYq2V67gBShjUQ/present)
 

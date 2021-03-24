@@ -98,12 +98,12 @@ instructions.
 The slides are cloud provided Google slides.
 If you follow the links,
 a separate browser tab will be opened with a presenter's view.
-You can view the lecture speaker transcript by view the
+You can view the lecture speaker transcript by viewing the
 speaker notes.
 
 ## Introduction
 
-Review the the following slides and/or associated lectures:
+Review the following slides and/or associated lectures:
 
 Introduction:
 

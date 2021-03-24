@@ -16,7 +16,7 @@ After completing this lesson, you will be able to:
 
 # Getting started
 
-Review the the following slides and/or associated lectures:
+Review the following slides and/or associated lectures:
 
 Accessing your platform:
 
