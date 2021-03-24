@@ -304,7 +304,7 @@ as *Service* resource description is provided to you.
         `http://pal-tracker:8080`
 
     -   Notice the `spec` section.
-        The `selector` section points the the pods that you deployed
+        The `selector` section points to the pods that you deployed
         previously in the exercise.
 
         Kubernetes will associated any pods with the same name and
