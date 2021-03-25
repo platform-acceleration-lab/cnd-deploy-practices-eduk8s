@@ -163,25 +163,14 @@ You are now ready to publish your image to your container registry.
 
 # Run a smoke test
 
-Run a smoke test using the
-`cloudNativeDeveloperK8sContainerizingAnApp` Gradle task from within the
-existing `smoke-tests` project directory.
-It requires you to provide the name of your container registry.
+Verify that the `pal-tracker` image has been pushed to the target registry.
 
-1.  Navigate to the `~/exercises/smoke-tests` directory in
-    terminal 2:
+One way to do this is to call the registry endpoint to [list image tags](https://docs.docker.com/registry/spec/api/#listing-image-tags):
 
-    ```terminal:execute
-    command: cd ~/exercises/smoke-tests
-    session: 2
-    ```
-
-1.  Run the smoke-tests command in terminal 2:
-
-    ```terminal:execute
-    command: ./gradlew cloudNativeDeveloperK8sContainerizingAnApp -Prepository=http://{{ registry_host }}/pal-tracker:v0
-    session: 2
-    ```
+```terminal:execute
+command: curl -i -u $REGISTRY_USERNAME:$REGISTRY_PASSWORD https://$REGISTRY_HOST/v2/pal-tracker/tags/list
+session: 2
+```
 
 # Wrap
 
