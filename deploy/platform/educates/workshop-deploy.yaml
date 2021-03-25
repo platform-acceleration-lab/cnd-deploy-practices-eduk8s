@@ -10,7 +10,7 @@ spec:
   duration: 240m
   url: https://github.com/platform-acceleration-lab/cnd-deploy-practices-eduk8s
   content:
-    image: quay.io/eduk8s/jdk11-environment
+    image: jdk11-environment:*
     files: http://files.$(workshop_namespace).svc.cluster.local/workshop.tar.gz
   session:
     namespaces:
