@@ -6,4 +6,6 @@ WORKDIR /build
 RUN tar -czf workshop.tar.gz .
 
 FROM nginxinc/nginx-unprivileged:1.19-alpine
+ARG   IMAGE_SOURCE
+LABEL org.opencontainers.image.source $IMAGE_SOURCE
 COPY --from=0 /build /usr/share/nginx/html
