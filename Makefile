@@ -11,7 +11,7 @@ reload: build educates-deploy educates-refresh
 
 refresh: build educates-refresh
 
-.PHONY: build kind-start kind-stop
+.PHONY: build kind-start kind-stop educates-deploy educates-refresh release deploy get-reporeg get-name
 
 kind-start:
 	deploy/environment/kind/start.sh ${NAME}
