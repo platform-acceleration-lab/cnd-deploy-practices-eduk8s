@@ -37,6 +37,13 @@ build:
 	docker cp ${NAME}-build:/usr/share/nginx/html/. build/
 	docker rm ${NAME}-build
 
+release:
+	docker push ${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}:${version}
+
+deploy:
+	docker tag ${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}:${version} ${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}:${environment}
+	docker push ${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}:${environment}
+
 get-reporeg:
 	@echo "${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}"
 
