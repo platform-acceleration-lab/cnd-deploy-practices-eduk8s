@@ -352,13 +352,29 @@ so you can route all traffic to the same place.
     endpoint,
     so the resource description is simple:
 
-    -   There is an ingress route already configured for you at
-        `pal-tracker.{{ session_namespace }}.{{ ingress_domain }}`.
-        The platform operator configured the platform to automatically
-        generate that for you.
+    -   There is an ingress route already configured for you at:
 
-    -   The default backend `service` description points the ingress
-        router to the `pal-tracker` service exposed for port `8080`.
+        `pal-tracker.{{ session_namespace }}.{{ ingress_domain }}`
+
+        It consists of two parts:
+
+        -   Hostname:
+            `pal-tracker.{{ session_namespace }}`
+
+        -   Domain:
+            `{{ ingress_domain }}`
+
+        The platform operator configured the `Domain` for the cluster,
+        and this workshop configured the `Hostname` for you.
+
+        In your work scenarios,
+        your PaaS platform may help automate you generating the route,
+        or if it does not, you may have to work with your operators to
+        allocate domain and/or host names for you.
+
+    -   The backend `service` description points the ingress
+        router to the `pal-tracker` service exposed for port `8080`
+        for the default path `/`.
 
 1.  Create the Ingress resource by applying the change using `kubectl`.
 
