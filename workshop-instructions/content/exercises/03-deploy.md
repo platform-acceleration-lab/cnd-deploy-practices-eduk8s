@@ -521,7 +521,7 @@ started or the following Tanzu Developer Center topics:
 
 - [Container basics](https://tanzu.vmware.com/developer/workshops/lab-container-basics/)
 - [Kubernetes fundamentals](https://tanzu.vmware.com/developer/workshops/lab-k8s-fundamentals/)
-- [Getting started with Spring Boot on Kubernetes](https://tanzu.vmware.com/developer/workshops/spring-boot-k8s-getting-started/)
+- [Spring on Kubernetes](https://tanzu.vmware.com/developer/workshops/spring-on-kubernetes/)
 
 More advanced tools are provided to help on the Application Operator
 journey for deploying Kubernetes hosted apps:
