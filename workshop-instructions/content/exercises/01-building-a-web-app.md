@@ -253,41 +253,20 @@ web application compliant with the two following cloud native guidelines:
     session: 2
     ```
 
-Notice that the Gradle `bootRun` task will implicitly compile the Java
-source code, load it into memory, and run it.
+    You will see the output "hello" message on the command line.
 
-It does not build an artifact you can deploy, however.
-You will see that in the next lesson.
-
-# Run a smoke test
-
-Run a smoke test to verify you completed the exercise correctly by
-running the `cloudNativeDeveloperK8sBootApp` Gradle task from within the
-existing `smoke-tests` project directory.
-It requires you to provide the URL of your application running locally.
-
-1.  Navigate to the `~/exercises/smoke-tests` directory in
-    terminal 2:
-
-    ```terminal:execute
-    command: cd ~/exercises/smoke-tests
-    session: 2
-    ```
-
-1.  Run the smoke test command in terminal 2:
-
-    ```terminal:execute
-    command: ./gradlew cloudNativeDeveloperK8sBootApp -PserverUrl=http://localhost:8080
-    session: 2
-    ```
-
-1.  After your smoke test is complete,
-    terminate your web app:
+1.  Terminate your web app:
 
     ```terminal:execute
     command: <ctrl+c>
     session: 1
     ```
+
+Notice that the Gradle `bootRun` task will implicitly compile the Java
+source code, load it into memory, and run it.
+
+It does not build an artifact you can deploy, however.
+You will see that in the next lesson.
 
 # Wrap
 

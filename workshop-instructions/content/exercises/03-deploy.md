@@ -361,8 +361,16 @@ so you can route all traffic to the same place.
         -   Hostname:
             `pal-tracker.{{ session_namespace }}`
 
+            where the suffix `{{ session_namespace }}` is your workshop
+            session namespace assigned to you.
+            You will see it referenced later in the instructions as
+            `${SESSION_NAMESPACE}`
+
         -   Domain:
             `{{ ingress_domain }}`
+
+            You will see it referenced later in the instructions as
+            `${INGRESS_DOMAIN}`
 
         The platform operator configured the `Domain` for the cluster,
         and this workshop configured the `Hostname` for you.
@@ -465,26 +473,14 @@ Use __Octant__ to view your Kubernetes cluster.
 
 # Run a smoke test
 
-Run a smoke test using the `cloudNativeDeveloperK8sDeployment`
-gradle task from within the existing `smoke-tests` project
-directory.
-It requires you to provide the URL of your application running on
-Kubernetes and the name of your Deployment.
+Run a smoke test against your deployment via the following command:
 
-1.  Navigate to the `~/exercises/smoke-tests` directory in
-    terminal 2:
+```terminal:execute
+command: curl -i http://pal-tracker.${SESSION_NAMESPACE}.${INGRESS_DOMAIN}
+session: 2
+```
 
-    ```terminal:execute
-    command: cd ~/exercises/smoke-tests
-    session: 2
-    ```
-
-1.  Run the smoke-tests command in terminal 2:
-
-    ```terminal:execute
-    command: ./gradlew cloudNativeDeveloperK8sDeployment -PserverUrl=http://pal-tracker.{{ session_namespace }}.{{ ingress_domain }} -PdeploymentName=pal-tracker
-    session: 2
-    ```
+You should see 'hello' message in the output.
 
 # Wrap
 

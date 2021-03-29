@@ -168,7 +168,7 @@ Verify that the `pal-tracker` image has been pushed to the target registry.
 One way to do this is to call the registry endpoint to [list image tags](https://docs.docker.com/registry/spec/api/#listing-image-tags):
 
 ```terminal:execute
-command: curl -i -u $REGISTRY_USERNAME:$REGISTRY_PASSWORD https://$REGISTRY_HOST/v2/pal-tracker/tags/list
+command: curl -i -u ${REGISTRY_USERNAME}:${REGISTRY_PASSWORD} https://${REGISTRY_HOST}/v2/pal-tracker/tags/list
 session: 2
 ```
 
