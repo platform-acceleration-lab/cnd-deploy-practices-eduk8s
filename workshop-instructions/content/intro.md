@@ -105,29 +105,13 @@ speaker notes.
 
 Review the following slides and/or associated lectures:
 
-Introduction:
+-   Introduction - Lecture #1 ([Slides](https://docs.google.com/presentation/d/1Bg9Ra_vMIzq4Gq5hfaZ0jopmKj1obvwov-Rk4xZbyBY/present#slide=id.g7ea4a9dfdf_0_1813))
 
--   [Slides](https://docs.google.com/presentation/d/1Bg9Ra_vMIzq4Gq5hfaZ0jopmKj1obvwov-Rk4xZbyBY/present#slide=id.g7ea4a9dfdf_0_1813)
+-   Personas - Lecture #2 ([Slides](https://docs.google.com/presentation/d/1T5Tjcqf0R-njyGSH3AQ7KqGdkX-co-GM0jlVAjRMk1M/present#slide=id.g7ea4a9dfdf_0_1813))
 
--   Lecture #1
+-   Guidelines and Practices - Lecture #3 ([Slides](https://docs.google.com/presentation/d/1QaBOfQK5_3DDNO9xi3I2N3gczM8243fUhvN7bPpLlcI/present#slide=id.gb51335f931_1_156))
 
-Personas:
-
--   [Slides](https://docs.google.com/presentation/d/1T5Tjcqf0R-njyGSH3AQ7KqGdkX-co-GM0jlVAjRMk1M/present#slide=id.g7ea4a9dfdf_0_1813)
-
--   Lecture #2
-
-Guidelines and Practices:
-
--   [Slides](https://docs.google.com/presentation/d/1QaBOfQK5_3DDNO9xi3I2N3gczM8243fUhvN7bPpLlcI/present#slide=id.gb51335f931_1_156)
-
--   Lecture #3
-
-Platform Concepts:
-
--   [Slides](https://docs.google.com/presentation/d/1fepud2V36GcsUNrUA1Aaz23q0CRFqvSs_a0yr5ehUTc/present#slide=id.g7ea4a9dfdf_0_1813)
-
--   Lecture #4
+-   Platform Concepts - Lecture #4 ([Slides](https://docs.google.com/presentation/d/1fepud2V36GcsUNrUA1Aaz23q0CRFqvSs_a0yr5ehUTc/present#slide=id.g7ea4a9dfdf_0_1813))
 
 It is important to understand the reasons driving adoption of Cloud
 Native principles and practices,

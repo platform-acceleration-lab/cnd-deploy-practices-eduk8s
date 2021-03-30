@@ -19,11 +19,9 @@ After completing this lesson, you will be able to:
 
 # Getting started
 
-Review the *Blocking web apps* slides and/or associated lectures:
+Review the *Blocking web apps* Lecture #5
+([Slides](https://docs.google.com/presentation/d/1lMcWJLcnp3w3qf5UAa2CWnd_VPbH15rMri6jtoolNAs/present))
 
--   [Slides](https://docs.google.com/presentation/d/1lMcWJLcnp3w3qf5UAa2CWnd_VPbH15rMri6jtoolNAs/present)
-
--   Lecture #5
 
 # Project structure
 

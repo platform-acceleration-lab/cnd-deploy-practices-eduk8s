@@ -18,17 +18,9 @@ After completing this lesson, you will be able to:
 
 Review the following slides and/or associated lectures:
 
-Accessing your platform:
+-   Accessing your platform - Lecture #7 ([Slides](https://docs.google.com/presentation/d/1ctnmoRcgbcVyBndFBDr00HtE23ky8GSqFIgKkRmo2Tw/present))
 
--   [Slides](https://docs.google.com/presentation/d/1ctnmoRcgbcVyBndFBDr00HtE23ky8GSqFIgKkRmo2Tw/present)
-
--   Lecture #7
-
-Deploying an app:
-
--   [Slides](https://docs.google.com/presentation/d/1mzZurB3sDo-7_Rj0p6RKv_gajg1rvFitPUd02Yvr-f8/present)
-
--   Lecture #8
+-   Deploying an app - Lecture #8 ([Slides](https://docs.google.com/presentation/d/1mzZurB3sDo-7_Rj0p6RKv_gajg1rvFitPUd02Yvr-f8/present))
 
 You are provided access to a Kubernetes cluster as your container
 orchestration platform to which you will deploy your application.
