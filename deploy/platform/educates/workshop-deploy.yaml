@@ -65,8 +65,8 @@ spec:
           spec:
             containers:
             - name: nginx
-              image: cnd-deploy-practices
-              imagePullPolicy: IfNotPresent
+              image: ghcr.io/platform-acceleration-lab/cnd-deploy-practices:staging
+              imagePullPolicy: Always
     - apiVersion: v1
       kind: Service
       metadata:
