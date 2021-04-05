@@ -41,6 +41,7 @@ release:
 	docker push ${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}:${version}
 
 deploy:
+	docker pull ${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}:${version}
 	docker tag ${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}:${version} ${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}:${environment}
 	docker push ${CONTAINER_REGISTRY}/${CONTAINER_REPOSITORY}:${environment}
 

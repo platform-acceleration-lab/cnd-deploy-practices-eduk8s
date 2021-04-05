@@ -1,11 +1,11 @@
 name: Release
 on:
   release:
-    types: [prereleased]
+    types: [prereleased, published]
 
 jobs:
   build:
-    name: Staging Release
+    name: Release
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repo
@@ -31,11 +31,6 @@ jobs:
           VERSION: ${{ steps.extract_tag.outputs.tag }}
         run: |
           make release version=$VERSION
-      - name: Publish staging tag to GitHub Package Registry
-        env:
-          VERSION: ${{ steps.extract_tag.outputs.tag }}
-        run: |
-          make deploy version=$VERSION environment=staging
       - name: Prune dangling images
         run: docker image prune -f
       - name: Upload Release Assets
