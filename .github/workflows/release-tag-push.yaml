@@ -7,7 +7,7 @@ on:
         required: true
         default: 'staging'
       # work around until release tags are available https://github.community/t/select-tag-release-when-running-workflow-dispatch/132970
-      release:
+      version:
         description: 'Existing Release Tag'
         required: true
         default: 'vMajor.Minor.Bugfix'
@@ -28,4 +28,4 @@ jobs:
         env:
           VERSION: ${{ steps.extract_tag.outputs.tag }}
         run: |
-          make deploy version=${{ github.event.inputs.environment }} environment=${{ github.event.inputs.environment }}
+          make deploy version=${{ github.event.inputs.version }} environment=${{ github.event.inputs.environment }}
