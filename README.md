@@ -122,8 +122,8 @@ The [exercises directory](./exercises) contains the following:
 1.  Download K8s configuration file
 
     -   Click the `VMware Tanzu Mission Control` (TMC) service
-    -   In the TMC, in the list of clusters, select the cluster named `kube-test-a351ffe`
-    -   In the upper left hand corner, under "actions", select "access this cluster"
+    -   In the TMC, in the list of clusters, select the cluster named `kube-stg-acf6c1f`
+    -   In the upper right hand corner, under "ACTIONS", select "Access this cluster"
     -   Download the kubeconfig file
 
 1.  Configure K8s locally: Execute following commands in a terminal window
