@@ -24,8 +24,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Add environment tag to release
+      - name: Add environment tag to release and push
         env:
           VERSION: ${{ steps.extract_tag.outputs.tag }}
         run: |
-          make release version=${{ github.event.inputs.environment }} environment=${{ github.event.inputs.environment }}
+          make deploy version=${{ github.event.inputs.environment }} environment=${{ github.event.inputs.environment }}
