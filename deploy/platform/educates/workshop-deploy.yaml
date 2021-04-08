@@ -35,17 +35,6 @@ spec:
       url: https://vimeo.com/showcase/8261088/embed
   environment:
     objects:
-    - apiVersion: v1
-      kind: PersistentVolumeClaim
-      metadata:
-        name: tarball-data
-        namespace: $(workshop_namespace)
-      spec:
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 500Mi
     - apiVersion: apps/v1
       kind: Deployment
       metadata:
@@ -66,7 +55,6 @@ spec:
             containers:
             - name: nginx
               image: cnd-deploy-practices
-              imagePullPolicy: IfNotPresent
     - apiVersion: v1
       kind: Service
       metadata:

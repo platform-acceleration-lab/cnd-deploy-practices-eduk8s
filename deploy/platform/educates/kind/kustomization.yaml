@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- workshop-deploy.yaml
+patches:
+- patch: |
+      apiVersion: training.eduk8s.io/v1alpha2
+      kind: Workshop
+      metadata:
+        name: cnd-deploy-practices
+      spec:
+        environment:
+          objects:
+          - kind: Deployment
+            metadata:
+              name: files
+              namespace: $(workshop_namespace)
+            spec:
+              template:
+                spec:
+                  containers:
+                  - name: nginx
+                    image: cnd-deploy-practices
+                    imagePullPolicy: IfNotPresent
+                      volumeMounts:
+                      - mountPath: /usr/share/nginx/html
+                        name: data
+                    volumes:
+                    - name: data
+                      emptyDir: {}
+  target:
+    kind: Workshop

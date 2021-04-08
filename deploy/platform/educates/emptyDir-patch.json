@@ -1,0 +1,6 @@
+[
+    {"op": "add",
+     "path": "/spec/environment/objects/0/spec/template/spec/containers/0",
+     "value": { "imagePullPolicy": "IfNotPresent", "backend": {"servicePort":7700} }
+    }
+]
