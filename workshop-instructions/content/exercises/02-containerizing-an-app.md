@@ -108,8 +108,7 @@ your container orchestrator will do in the next lesson.
 
 1.  Terminate the application:
 
-    ```terminal:execute
-    command: <ctrl+c>
+    ```terminal:interrupt
     session: 1
     ```
 

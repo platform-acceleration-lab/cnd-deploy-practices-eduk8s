@@ -255,10 +255,10 @@ web application compliant with the two following cloud native guidelines:
 
 1.  Terminate your web app:
 
-    ```terminal:execute
-    command: <ctrl+c>
+    ```terminal:interrupt
     session: 1
     ```
+
 
 Notice that the Gradle `bootRun` task will implicitly compile the Java
 source code, load it into memory, and run it.
