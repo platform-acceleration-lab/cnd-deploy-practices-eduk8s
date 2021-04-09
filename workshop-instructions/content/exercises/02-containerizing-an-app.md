@@ -50,10 +50,7 @@ both of your terminal windows,
 and clear both:
 
 ```terminal:execute-all
-command: cd ~/exercises/pal-tracker
-```
-
-```terminal:clear-all
+command: cd ~/exercises/pal-tracker && clear
 ```
 
 # Use Buildpacks to containerize your app
