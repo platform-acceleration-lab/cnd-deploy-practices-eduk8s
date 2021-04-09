@@ -35,7 +35,7 @@ Review the *Blocking web apps* Lecture #5
     your terminal windows:
 
     ```terminal:execute-all
-    command: cd ~/exercises/pal-tracker
+    command: cd ~/exercises/pal-tracker && clear
     ```
 
 For the remainder of this lesson you will review,

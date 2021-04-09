@@ -32,10 +32,7 @@ orchestration platform to which you will deploy your application.
     and clear both:
 
     ```terminal:execute-all
-    command: cd ~/exercises/k8s
-    ```
-
-    ```terminal:clear-all
+    command: cd ~/exercises/k8s && clear
     ```
 
 1.  Review the list of files in the `~/exercises/k8s` directory.
