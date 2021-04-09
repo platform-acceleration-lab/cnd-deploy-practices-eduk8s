@@ -153,6 +153,11 @@ and then run the following:
 ```
 make reload
 ```
+
+## Production
+
+https://tanzu.vmware.com/developer/workshops/cnd-deploy-practices/
+
 ## Known issues
 
 ### Kubernetes cannot pull from container registry (minikube)
