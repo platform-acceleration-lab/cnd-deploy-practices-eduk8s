@@ -74,6 +74,11 @@ To generate container images, you will be using a Gradle task.
     command: docker images
     session: 2
     ```
+    
+    Notice that the output shows that the container image is **41 years old**.
+    This happens because Buildpacks aim to create 
+    [reproducible builds](https://buildpacks.io/docs/reference/reproducibility/) of 
+    container images. 
 
 # Run your app locally using the container image
 
