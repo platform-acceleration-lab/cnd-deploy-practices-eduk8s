@@ -1,5 +1,5 @@
 resources:
-- ../
+  - ../../base
 patchesStrategicMerge:
 - |-
   apiVersion: training.eduk8s.io/v1alpha2
@@ -12,6 +12,7 @@ patchesStrategicMerge:
       - kind: Deployment
         metadata:
           name: files
+          namespace: $(workshop_namespace)
         spec:
           template:
             spec:
@@ -19,9 +20,10 @@ patchesStrategicMerge:
               - name: nginx
                 image: cnd-deploy-practices
                 imagePullPolicy: IfNotPresent
-                  volumeMounts:
+                volumeMounts:
                   - mountPath: /usr/share/nginx/html
                     name: data
                 volumes:
                 - name: data
                   emptyDir: {}
+

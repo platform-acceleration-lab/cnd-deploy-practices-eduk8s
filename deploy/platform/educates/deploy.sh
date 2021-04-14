@@ -2,7 +2,9 @@
 
 export EDUCATES_VERSION="master"
 export DEFAULT_CLUSTER_NAME="CHANGEME"
+export DEFAULT_ENVIRONMENT="base"
 export WORKSHOP_NAME="${2:-$WORKSHOP_NAME}"
+export ENVIRONMENT="${3:-$DEFAULT_ENVIRONMENT}"
 
 DIR=$(dirname $0)
 
@@ -26,7 +28,7 @@ installEducates() {
 
 loadWorkshop() {
     echo "===== Installing the workshop and training portal"
-    kubectl apply -f $DIR
+    kubectl apply -k $DIR/$ENVIRONMENT
 
     echo "===== Waiting for Trainging Portal to be Running"
     while true; do

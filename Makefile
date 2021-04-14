@@ -25,6 +25,7 @@ educates-deploy:
 	deploy/platform/educates/deploy.sh loadContent ${NAME}
 
 educates-refresh:
+	deploy/platform/educates/deploy.sh loadWorkshop ${NAME} kind
 	deploy/platform/educates/deploy.sh loadContent ${NAME}
 
 build:

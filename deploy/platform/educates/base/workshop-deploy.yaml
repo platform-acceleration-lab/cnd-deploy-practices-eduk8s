@@ -55,6 +55,7 @@ spec:
             containers:
             - name: nginx
               image: cnd-deploy-practices
+              imagePullPolicy: IfNotPresent
     - apiVersion: v1
       kind: Service
       metadata:
