@@ -9,12 +9,22 @@ patchesStrategicMerge:
   spec:
     environment:
       objects:
-      - kind: Deployment
+      - apiVersion: apps/v1
+        kind: Deployment
         metadata:
           name: files
           namespace: $(workshop_namespace)
         spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              deployment: files
+          strategy:
+            type: Recreate
           template:
+            metadata:
+              labels:
+                deployment: files
             spec:
               containers:
               - name: nginx
@@ -23,7 +33,7 @@ patchesStrategicMerge:
                 volumeMounts:
                   - mountPath: /usr/share/nginx/html
                     name: data
-                volumes:
-                - name: data
-                  emptyDir: {}
+              volumes:
+              - name: data
+                emptyDir: {}
 

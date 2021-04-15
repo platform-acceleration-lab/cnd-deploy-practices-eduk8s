@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export EDUCATES_VERSION="master"
+export EDUCATES_VERSION="develop"
 export DEFAULT_CLUSTER_NAME="CHANGEME"
 export DEFAULT_ENVIRONMENT="base"
 export WORKSHOP_NAME="${2:-$WORKSHOP_NAME}"

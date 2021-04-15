@@ -5,13 +5,13 @@ CONTAINER_REPOSITORY  = ${NAME}
 version               = latest
 
 # Put it first so that "make" without argument is like "make help".
-run: build kind-start educates-deploy
+run: kind-start educates-deploy reload
 
-reload: build educates-deploy educates-refresh
+reload: build workshop-deploy workshop-deploy
 
-refresh: build educates-refresh
+refresh: build workshop-refresh
 
-.PHONY: build kind-start kind-stop educates-deploy educates-refresh release deploy get-reporeg get-name
+.PHONY: build kind-start kind-stop educates-deploy workshop-deploy workshop-refresh release deploy get-reporeg get-name
 
 kind-start:
 	deploy/environment/kind/start.sh ${NAME}
@@ -21,11 +21,11 @@ kind-stop:
 
 educates-deploy:
 	deploy/platform/educates/deploy.sh installEducates ${NAME}
-	deploy/platform/educates/deploy.sh loadWorkshop ${NAME}
-	deploy/platform/educates/deploy.sh loadContent ${NAME}
 
-educates-refresh:
-	deploy/platform/educates/deploy.sh loadWorkshop ${NAME} kind
+workshop-deploy:
+	deploy/platform/educates/deploy.sh loadWorkshop ${NAME} overlays/kind
+
+workshop-refresh:
 	deploy/platform/educates/deploy.sh loadContent ${NAME}
 
 build:
