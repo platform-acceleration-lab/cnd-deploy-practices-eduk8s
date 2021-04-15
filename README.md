@@ -14,7 +14,6 @@ The `deploy` directory contains convenience scripts to help the
 developer/maintainer with local development builds and deploying
 the workshop to local or remote clusters.
 
-
 See the
 [Authoring / Maintaining](#authoring--maintaining) section for
 recommended maintainer workflows.
@@ -57,9 +56,9 @@ See that repo for pre-requisites and description of commands.
 
 ### Running workshop locally
 
-1. `make`
+1.  `make`
 
-1. Navigate to the Training Portal URL displayed in the terminal.
+1.  Navigate to the Training Portal URL displayed in the terminal.
 
 ## Authoring / Maintaining
 
@@ -77,129 +76,41 @@ There are a few scenarios common with authoring:
 1. Training portal or workshop configuraton changes
 1. A combination of the 4
 
-The first two can be accomplished by the following steps:
+At this time,
+the only working option for workflow is to tear down and recreate the
+kind cluster:
 
-1.  Make the appropriate content changes,
-    either in the markdown files,
-    or code.
+1.  Deleted any pre-existing kind cluster for this workshop:
+    `kind delete cluster --name cnd-deploy-practices`
 
-1.  Test locally by reloading the workshop:
+1.  Build the content, images, and deploy to the local Kind cluster:
+    `make`
 
-    ```bash
-    make refresh
-    ```
+1.  Sideload `pal-tracker` image to Kind cluster specific to the labs:
 
-1. Terminate your workshop session and launch a new one.
+    `./deploy/environment/kind/sideload-pal-tracker.sh 3`
 
-Note, if you make changes to the `workshop-deploy.yaml` or
-`training-portal.yaml` then issue a `make reload` instead which
-will tear down the portal and workshop and recreate them.
+    Where the argument of `3` give you up to 3 workshop session
+    pal-tracker image repositories are side loaded to Kind for you.
+
+    *Side loading of the `pal-tracker` image is required because when*
+    *running containerd in a Kind cluster does not allow K8s to pull*
+    *from insecure registries*
 
 ### Lessons
 
-The [workshop content](./workshop/content) contains all the meat of the
-course,
+The [workshop instructions](./workshop-instructions) contains all the
+meat of the course,
 lab instructions.
 
 ### Solution
 
-The [exercises directory](./exercises) contains the following:
-
--   `smoke-tests` directory contains the exercise smoke test
-    project.
+The [exercises directory](./workshop-files/exercises) contains the following:
 
 -   `pal-tracker` directory contains the application source code
--   `k8s` directory contains the deployment resource configurations.
 
-## Deployment steps to ESP staging educates cluster
-
-1.  Acquire access to [VMware Cloud Services](https://console.cloud.vmware.com/)
-
-    -   Check that you have access to the organization named `GTIX-VES`
-    -   If not: email [Maria Blagoeva](mailto:mblagoeva@vmware.com) and
-        request access to ESP staging educates clusters
-
-1.  Download K8s configuration file
-
-    -   Click the `VMware Tanzu Mission Control` (TMC) service
-    -   In the TMC, in the list of clusters, select the cluster named `kube-stg-acf6c1f`
-    -   In the upper right hand corner, under "ACTIONS", select "Access this cluster"
-    -   Download the kubeconfig file
-
-1.  Configure K8s locally: Execute following commands in a terminal window
-
-    -   export KUBECONFIG=<path-to-kubeconfig-file>
-    -   kubectl config view
-
-1.  Get TMC API Token
-
-    -    Go to [VMware Cloud Services](https://console.cloud.vmware.com/)
-    -    Click on "My Account" from the profile pulldown
-    -    Select the tab "API Tokens" and generate yourself a token
-    -    Give a Token name and select "All Roles" under "Define Scopes" pane
-    -    Do "export TMC_API_TOKEN=<Your API Token>"
-
-2.  Download and install Tanzu Mission Control CLI ("tmc")
-
-    -   Follow the [instruction](https://docs.vmware.com/en/VMware-Tanzu-Mission-Control/services/tanzumc-using/GUID-7EEBDAEF-7868-49EC-8069-D278FD100FD9.html?hWord=N4IghgNiBcIC4FsDGIC+Q)
-
-Now you should be able to deploy workshops, trainingportals, etc.. per the educates documentation.
-
-## Build and Deployment steps to ESP staging educates cluster
-
-Make sure your `kubectl` current context is point to the ESP staging cluster
-and then run the following:
-
-```
-make reload
-```
+-   `k8s` directory contains the deployment resource configurations
 
 ## Production
 
 https://tanzu.vmware.com/developer/workshops/cnd-deploy-practices/
-
-## Known issues
-
-### Kubernetes cannot pull from container registry (minikube)
-
-Make sure you have configured the `--insecure-registry` flag to the
-correct subnet associated with your minikube installation.
-
-You can verify the minikube ip address:
-
-```bash
-minikube ip
-```
-
-If you misconfigured the flag,
-delete your minikube cluster and recreate with the correct value.
-
-### Workshop does not deploy, workhop namespace does not terminate
-
-You are attempting to update a workspace configuration,
-but it is not accessible through the training portal.
-
-1.  Verify the workhop session pods can pull the image during the
-    initialization of a workshop session:
-
-    ```bash
-    kubectl get po -A --field-selector metadata.namespace!=kube-system -w
-    ```
-
-    Watch for pod creation:
-
-    ```no-highlight
-
-    ```
-
-1.  Verify you have no orphaned or dangling workshop sessions:
-
-    ```bash
-    kubectl get workshopsessions
-    ```
-
-    Delete orphaned workshop session(s):
-
-    ```bash
-    kubectl delete workshopsession/<workshopsession name>
-    ```
