@@ -7,7 +7,7 @@ version               = latest
 # Put it first so that "make" without argument is like "make help".
 run: kind-start educates-deploy reload
 
-reload: build workshop-deploy workshop-deploy
+reload: build workshop-deploy workshop-deploy workshop-refresh
 
 refresh: build workshop-refresh
 

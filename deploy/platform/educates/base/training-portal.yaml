@@ -7,6 +7,8 @@ spec:
   portal:
     registration:
       type: anonymous
+    updates:
+      workshop: true
   workshops:
   - name: cnd-deploy-practices
     capacity: 5
