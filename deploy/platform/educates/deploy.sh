@@ -63,7 +63,7 @@ loadContent() {
     kubectl cp --namespace="${WORKSHOP_NAME}-w01" "${DIR}/../../../build/workshop.tar.gz" "${WORKSHOP_FILES_POD}:/usr/share/nginx/html/"
     kubectl exec --namespace="${WORKSHOP_NAME}-w01" "${WORKSHOP_FILES_POD}" -- ls -lah /usr/share/nginx/html
     kubectl get trainingportals.training.eduk8s.io
-    echo "===== Run \"update-workshop\" in the workshop terminal to see the updates
+    echo "===== Run \"update-workshop\" in the workshop terminal to see the updates"
 }
 
 "$@"
