@@ -1,8 +1,5 @@
-NAME                  = cnd-deploy-practices
-IMAGE_SOURCE		  = https://github.com/platform-acceleration-lab/cnd-deploy-practices-eduk8s
-CONTAINER_REGISTRY    = ghcr.io/platform-acceleration-lab
-CONTAINER_REPOSITORY  = ${NAME}
-version               = latest
+#!make
+include Makefile.env
 
 # Put it first so that "make" without argument is like "make help".
 run: kind-start educates-deploy reload
@@ -22,7 +19,7 @@ clean: kind-clean
 .PHONY: build kind-start kind-delete kind-clean kind-stop educates-deploy workshop-deploy workshop-refresh release delete start deploy stop clean get-reporeg get-name
 
 kind-start:
-	deploy/environment/kind/deploy.sh start
+	deploy/environment/kind/deploy.sh start ${NAME}
 
 kind-stop:
 	deploy/environment/kind/deploy.sh stop

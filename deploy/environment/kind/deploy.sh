@@ -3,6 +3,7 @@
 export CLUSTER_NAME="educates"
 export REGISTRY_NAME="kind-registry"
 export CONTOUR_VERSION="1.16"
+export WORKSHOP_NAME="${2}"
 DIR=$(dirname $0)
 
 start() {
@@ -20,8 +21,24 @@ start() {
       exit
     fi
 
+    echo "===== Dynamically populating insecure registry exceptions"
+    IPADDRESS="$(ifconfig | grep 'broadcast\|Bcast' | awk -F ' ' {'print $2'} | head -n 1 | sed -e 's/addr://g')"
+    if [ -z "$IPADDRESS" ]
+    then
+        IPADDRESS="$(hostname -I |grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' |head -n 1)" # workaround if ifconfig is not installed on recent versions of Debian
+    fi
+    INSECURE_REGISTRIES=""
+    for i in {1..9}
+    do
+    INSECURE_REGISTRIES+="  [plugins.\"io.containerd.grpc.v1.cri\".registry.mirrors.\"${WORKSHOP_NAME}-w01-s00${i}-registry.${IPADDRESS}.nip.io\"]"
+    INSECURE_REGISTRIES+="\n    endpoint = [\"http:\\/\\/${WORKSHOP_NAME}-w01-s00${i}-registry.${IPADDRESS}.nip.io\"]\n"
+    done
+
+    sed "s/  #__EXTRA_REGISTRIES__/${INSECURE_REGISTRIES}/g" ${DIR}/kind-config.yaml > ${DIR}/kind-config.yaml.resolved
+
     echo "===== Creating cluster"
-    kind create cluster --name "${CLUSTER_NAME}" --config=$DIR/kind-config.yaml
+    kind create cluster --name "${CLUSTER_NAME}" --config=$DIR/kind-config.yaml.resolved
+    rm ${DIR}/kind-config.yaml.resolved
 
     # connect the registry to the cluster network
     # (the network may already be connected)

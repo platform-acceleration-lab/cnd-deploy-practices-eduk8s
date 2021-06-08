@@ -18,13 +18,14 @@ installEducates() {
         EDUCATES_OPERATOR_IMAGE=$(echo "${EDUCATES_YAML_ORIGINAL}" | grep eduk8s-operator: | awk '{print $2}')
         EDUCATES_PORTAL_IMAGE=$(echo "${EDUCATES_YAML_ORIGINAL}" | grep eduk8s-portal: | awk '{print $2}' | sed s/'$(image_repository)'/"quay.io\\/eduk8s"/g)
         EDUCATES_WORKSHOP_BASE_IMAGE=$(echo "${EDUCATES_YAML_ORIGINAL}" | grep base-environment: | awk '{print $2}' | sed s/'$(image_repository)'/"quay.io\\/eduk8s"/g)
-        EDUCATES_WORKSHOP_JDK_11_IMAGE=$(echo "${EDUCATES_YAML_ORIGINAL}" | grep jdk11-environment: | awk '{print $2}' | sed s/'$(image_repository)'/"quay.io\\/eduk8s"/g)
+        # grab the first image reference in case people are specifying a workshop image. The goal here is to not cache everything
+        EDUCATES_WORKSHOP_IMAGE=$( grep -m 1 "image:" ${DIR}/base/workshop-deploy.yaml | awk '{print $2}' | sed s/'$(image_repository)'/"quay.io\\/eduk8s"/g)
 
         echo "===== Pulling Educates images to cache"
         docker pull "${EDUCATES_OPERATOR_IMAGE}"
         docker pull "${EDUCATES_PORTAL_IMAGE}"
         docker pull "${EDUCATES_WORKSHOP_BASE_IMAGE}"
-        docker pull "${EDUCATES_WORKSHOP_JDK_11_IMAGE}"
+        docker pull "${EDUCATES_WORKSHOP_IMAGE}"
 
         echo "===== Pushing Educates images into local registry to avoid re-download"
         docker tag "${EDUCATES_OPERATOR_IMAGE}" $(echo "${EDUCATES_OPERATOR_IMAGE}" | sed s/"quay.io"/"localhost:5000"/g)
@@ -33,7 +34,8 @@ installEducates() {
         docker push $(echo "${EDUCATES_PORTAL_IMAGE}" | sed s/"quay.io"/"localhost:5000"/g)
         docker tag "${EDUCATES_WORKSHOP_BASE_IMAGE}" $(echo "${EDUCATES_WORKSHOP_BASE_IMAGE}" | sed s/"quay.io"/"localhost:5000"/g)
         docker push $(echo "${EDUCATES_WORKSHOP_BASE_IMAGE}" | sed s/"quay.io"/"localhost:5000"/g)
-        docker push $(echo "${EDUCATES_WORKSHOP_JDK_11_IMAGE}" | sed s/"quay.io"/"localhost:5000"/g)
+        docker tag "${EDUCATES_WORKSHOPIMAGE}" $(echo "${EDUCATES_WORKSHOPIMAGE}" | sed s/"quay.io"/"localhost:5000"/g)
+        docker push $(echo "${EDUCATES_WORKSHOP_IMAGE}" | sed s/"quay.io"/"localhost:5000"/g)
 
         echo "===== Installing educates"
         echo "${EDUCATES_YAML_ORIGINAL}" | sed s/'quay.io'/'localhost:5000'/g | kubectl apply -f -

@@ -1,7 +1,8 @@
-# Educates Workshop Template Repo
+# Cloud Native Deployment practices workshop maintainer's guide
 
-This repo is intended to be used as an easy way to duplicate and then add
-your workshop specific content that would run on Educates.
+Welcome to the Developer Cloud Native Deployment practices workshop.
+
+This page is for maintainers, not for students.
 
 ## Requirements
 
