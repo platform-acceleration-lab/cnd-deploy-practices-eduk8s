@@ -7,9 +7,10 @@ spec:
   portal:
     registration:
       type: anonymous
+    updates:
+      workshop: true
   workshops:
   - name: cnd-deploy-practices
-    capacity: 5
-    reserved: 0
+    capacity: 1
     expires: 180m
     orphaned: 5m
