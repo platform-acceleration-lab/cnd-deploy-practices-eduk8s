@@ -4,8 +4,8 @@ kind: Workshop
 metadata:
   name: cnd-deploy-practices
 spec:
-  title: My Workshop
-  description: My Workshop Description
+  title: Deploy a Cloud Native App on a Modern Orchestrated Platform
+  description: Deploy a Cloud Native App on a Modern Orchestrated Platform
   vendor: eduk8s.io
   difficulty: beginner
   duration: 120m
